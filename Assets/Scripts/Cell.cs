@@ -4,6 +4,7 @@ public enum CellStatus
 {
     default_,
     available,
+    enemy
 }
 
 public class Cell : MonoBehaviour
@@ -37,6 +38,7 @@ public class Cell : MonoBehaviour
         {
             case CellStatus.default_: Material.color = Color.white; break;
             case CellStatus.available: Material.color = Color.green; break;
+            case CellStatus.enemy: Material.color = Color.red; break;
         }
     }
 

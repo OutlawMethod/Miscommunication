@@ -10,6 +10,7 @@ public class Grid : MonoBehaviour
 
     public Cell[,] Cells;
 
+    public Cell Origin;
     public Cell Hover;
 
     public List<Cell> Unvisited = new List<Cell>();
@@ -43,7 +44,7 @@ public class Grid : MonoBehaviour
 
     public bool HasPath(Cell target)
     {
-        return target.Value < max;
+        return target.Value < max && target != Origin;
     }
 
     public Cell[] Path(Cell target)
@@ -62,8 +63,10 @@ public class Grid : MonoBehaviour
         return path.ToArray();
     }
 
-    public void Setup(Grid grid, Cell origin, int range)
+    public void FindPaths(Grid grid, Cell origin, int range)
     {
+        Origin = origin;
+
         for (int x = 0; x < grid.Width; x++)
             for (int y = 0; y < grid.Height; y++)
             {
@@ -81,12 +84,12 @@ public class Grid : MonoBehaviour
 
         while (Unvisited.Count > 0 && current != null)
         {
-            if (current.Value < range)
+            if (current.Value < range && (current == origin || current.Character == null))
             {
-                if (current.X > 0) consider(grid.Cells[current.X - 1, current.Y], current);
-                if (current.X < grid.Width - 1) consider(grid.Cells[current.X + 1, current.Y], current);
-                if (current.Y > 0) consider(grid.Cells[current.X, current.Y - 1], current);
-                if (current.Y < grid.Height - 1) consider(grid.Cells[current.X, current.Y + 1], current);
+                if (current.X > 0) consider(grid.Cells[current.X - 1, current.Y], current, origin.Character);
+                if (current.X < grid.Width - 1) consider(grid.Cells[current.X + 1, current.Y], current, origin.Character);
+                if (current.Y > 0) consider(grid.Cells[current.X, current.Y - 1], current, origin.Character);
+                if (current.Y < grid.Height - 1) consider(grid.Cells[current.X, current.Y + 1], current, origin.Character);
             }
 
             current.Visited = true;
@@ -106,14 +109,19 @@ public class Grid : MonoBehaviour
         for (int x = 0; x < Width; x++)
             for (int y = 0; y < Height; y++)
                 if (HasPath(Cells[x, y]))
-                    Cells[x, y].Status = CellStatus.available;
+                {
+                    if (Cells[x, y].Character != null)
+                        Cells[x, y].Status = CellStatus.enemy;
+                    else
+                        Cells[x, y].Status = CellStatus.available;
+                }
                 else
                     Cells[x, y].Status = CellStatus.default_;
     }
 
-    private void consider(Cell cell, Cell origin)
+    private void consider(Cell cell, Cell origin, Character character)
     {
-        if (cell.Character != null)
+        if (cell.Character != null && character != null && cell.Character.Team == character.Team)
             return;
 
         var newValue = origin.Value + 1;

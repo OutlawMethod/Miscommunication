@@ -36,7 +36,7 @@ public class Manager : MonoBehaviour
 
     private void Update()
     {
-        if (OrderTarget != null && OrderTarget.IsMoving)
+        if (OrderTarget != null && OrderTarget.IsActing)
             return;
         else if (OrderTarget != null)
             updateNextOrder();
@@ -58,7 +58,14 @@ public class Manager : MonoBehaviour
     private void giveCommand(Character character, Cell target)
     {
         if (Grid.HasPath(target))
-            character.Move(Grid.Path(target));
+        {
+            var path = Grid.Path(target);
+
+            if (target.Character != null)
+                character.Attack(Grid.Path(target));
+            else
+                character.Move(Grid.Path(target));
+        }
 
         OrderTarget = character;
         Order.Remove(character);
@@ -73,14 +80,16 @@ public class Manager : MonoBehaviour
         instance.SetActive(true);
 
         var character = instance.GetComponent<Character>();
+        character.Team = team;
         character.Cell = Grid.Cells[x, y];
+        character.Cell.Character = character;
 
         Characters.Add(character);
     }
 
     private void updateNextOrder()
     {
-        Grid.Setup(Grid, Order[0].Cell, Order[0].Range);
+        Grid.FindPaths(Grid, Order[0].Cell, Order[0].Range);
         OrderTarget = null;
     }
 }
