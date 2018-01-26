@@ -13,6 +13,8 @@ public class Grid : MonoBehaviour
     public Cell Origin;
     public Cell Hover;
 
+    public int HoverTeam = -1;
+
     public List<Cell> Unvisited = new List<Cell>();
 
     public void Setup()
@@ -63,12 +65,19 @@ public class Grid : MonoBehaviour
         return path.ToArray();
     }
 
-    public void FindPaths(Grid grid, Cell origin, int range)
+    public void ClearStatus()
+    {
+        for (int x = 0; x < Width; x++)
+            for (int y = 0; y < Height; y++)
+                Cells[x, y].Status = CellStatus.default_;
+    }
+
+    public void FindPaths(Cell origin, int range)
     {
         Origin = origin;
 
-        for (int x = 0; x < grid.Width; x++)
-            for (int y = 0; y < grid.Height; y++)
+        for (int x = 0; x < Width; x++)
+            for (int y = 0; y < Height; y++)
             {
                 var cell = Cells[x, y];
 
@@ -86,10 +95,10 @@ public class Grid : MonoBehaviour
         {
             if (current.Value < range && (current == origin || current.Character == null))
             {
-                if (current.X > 0) consider(grid.Cells[current.X - 1, current.Y], current, origin.Character);
-                if (current.X < grid.Width - 1) consider(grid.Cells[current.X + 1, current.Y], current, origin.Character);
-                if (current.Y > 0) consider(grid.Cells[current.X, current.Y - 1], current, origin.Character);
-                if (current.Y < grid.Height - 1) consider(grid.Cells[current.X, current.Y + 1], current, origin.Character);
+                if (current.X > 0) consider(Cells[current.X - 1, current.Y], current, origin.Character);
+                if (current.X < Width - 1) consider(Cells[current.X + 1, current.Y], current, origin.Character);
+                if (current.Y > 0) consider(Cells[current.X, current.Y - 1], current, origin.Character);
+                if (current.Y < Height - 1) consider(Cells[current.X, current.Y + 1], current, origin.Character);
             }
 
             current.Visited = true;

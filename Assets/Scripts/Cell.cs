@@ -37,7 +37,10 @@ public class Cell : MonoBehaviour
         switch (Status)
         {
             case CellStatus.default_:
-                Material.color = Color.white;
+                if (Grid.Hover == this && Character != null && Character.Team == Grid.HoverTeam)
+                    Material.color = Color.yellow;
+                else
+                    Material.color = Color.white;
                 break;
 
             case CellStatus.available:

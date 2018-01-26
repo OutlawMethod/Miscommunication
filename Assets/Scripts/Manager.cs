@@ -14,9 +14,11 @@ public class Manager : MonoBehaviour
     public CharacterSet[] Prefabs;
 
     public List<Character> Characters = new List<Character>();
-    public List<Character> Order = new List<Character>();
 
-    public Character OrderTarget;
+    public int Team = 0;
+
+    public Character Current;
+    public bool IsProcessing;
 
     private void Awake()
     {
@@ -28,17 +30,16 @@ public class Manager : MonoBehaviour
             placeCharacter(Prefabs[i], i, Grid.Height - 1, 1);
         }
 
-        foreach (var character in Characters)
-            Order.Add(character);
-
-        updateNextOrder();
+        Grid.ClearStatus();
     }
 
     private void Update()
     {
-        if (OrderTarget != null && OrderTarget.IsActing)
+        Grid.HoverTeam = -1;
+
+        if (IsProcessing && Current.IsActing)
             return;
-        else if (OrderTarget != null)
+        else if (IsProcessing)
             updateNextOrder();
 
         updateInput();   
@@ -46,12 +47,25 @@ public class Manager : MonoBehaviour
 
     private void updateInput()
     {
-        var character = Order[0];
-
-        if (Grid.Hover != null && Grid.HasPath(Grid.Hover))
+        if (Current == null)
         {
-            if (Input.GetMouseButtonDown(0))
-                giveCommand(character, Grid.Hover);
+            Grid.HoverTeam = Team;
+
+            if (Grid.Hover != null && Grid.Hover.Character != null && Grid.Hover.Character.Team == Team)
+                if (Input.GetMouseButtonDown(0))
+                {
+                    Current = Grid.Hover.Character;
+                    Current.Range = Current.MaxRange;
+                    updateNextOrder();
+                }
+        }
+        else
+        {
+            if (Grid.Hover != null && Grid.HasPath(Grid.Hover))
+            {
+                if (Input.GetMouseButtonDown(0))
+                    giveCommand(Current, Grid.Hover);
+            }
         }
     }
 
@@ -67,7 +81,7 @@ public class Manager : MonoBehaviour
                 character.Move(Grid.Path(target));
         }
 
-        OrderTarget = character;
+        IsProcessing = true;
     }
 
     private void placeCharacter(CharacterSet prefabs, int x, int y, int team)
@@ -87,19 +101,24 @@ public class Manager : MonoBehaviour
 
     private void updateNextOrder()
     {
-        if (OrderTarget != null)
+        if (IsProcessing)
         {
-            if (OrderTarget.Range <= 0)
+            if (Current.Range <= 0)
             {
-                Order.Remove(OrderTarget);
-                Order.Add(OrderTarget);
-                Order[0].Range = Order[0].MaxRange;
+                Current = null;
+                Grid.ClearStatus();
+
+                if (Team == 0)
+                    Team = 1;
+                else
+                    Team = 0;
+
             }
         }
-        else
-            Order[0].Range = Order[0].MaxRange;
 
-        Grid.FindPaths(Grid, Order[0].Cell, Order[0].Range);
-        OrderTarget = null;
+        if (Current != null)
+            Grid.FindPaths(Current.Cell, Current.Range);
+
+        IsProcessing = false;
     }
 }
