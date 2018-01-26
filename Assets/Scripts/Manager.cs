@@ -16,6 +16,8 @@ public class Manager : MonoBehaviour
     public List<Character> Characters = new List<Character>();
     public List<Character> Order = new List<Character>();
 
+    public Character OrderTarget;
+
     private void Awake()
     {
         Grid.Setup();
@@ -28,10 +30,20 @@ public class Manager : MonoBehaviour
 
         foreach (var character in Characters)
             Order.Add(character);
+
+        Dijkstra.Setup(Grid, Order[0].Cell, Order[0].Range);
     }
 
     private void Update()
     {
+        if (OrderTarget != null && OrderTarget.IsMoving)
+            return;
+        else if (OrderTarget != null)
+        {
+            Dijkstra.Setup(Grid, Order[0].Cell, Order[0].Range);
+            OrderTarget = null;
+        }
+
         updateInput();   
     }
 
@@ -39,7 +51,7 @@ public class Manager : MonoBehaviour
     {
         var character = Order[0];
 
-        if (Grid.Hover != null && Grid.Hover.Character == null)
+        if (Grid.Hover != null && Dijkstra.HasPath(Grid.Hover))
         {
             if (Input.GetMouseButtonDown(0))
                 giveCommand(character, Grid.Hover);
@@ -48,8 +60,10 @@ public class Manager : MonoBehaviour
 
     private void giveCommand(Character character, Cell target)
     {
-        character.Move(target);
+        if (Dijkstra.HasPath(target))
+            character.Move(Dijkstra.Path(target));
 
+        OrderTarget = character;
         Order.Remove(character);
         Order.Add(character);
     }
@@ -61,6 +75,9 @@ public class Manager : MonoBehaviour
         instance.transform.position = Grid.Cells[x, y].transform.position;
         instance.SetActive(true);
 
-        Characters.Add(instance.GetComponent<Character>());
+        var character = instance.GetComponent<Character>();
+        character.Cell = Grid.Cells[x, y];
+
+        Characters.Add(character);
     }
 }

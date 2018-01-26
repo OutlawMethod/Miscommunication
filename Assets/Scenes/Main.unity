@@ -384,8 +384,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8733b3d1785fae40a2197935fdf0b1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Range: 5
+  ShiftDuration: 0.5
   Team: 0
   Cell: {fileID: 0}
+  IsMoving: 0
+  Path: []
+  Transition: 0
+  PathIndex: 0
+  TransitionOrigin: {x: 0, y: 0, z: 0}
 --- !u!1 &573038452
 GameObject:
   m_ObjectHideFlags: 0
@@ -501,10 +508,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Character: {fileID: 0}
   Grid: {fileID: 0}
-  Front: {fileID: 0}
-  Back: {fileID: 0}
-  Left: {fileID: 0}
-  Right: {fileID: 0}
+  X: 0
+  Y: 0
 --- !u!65 &922597506
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -740,8 +745,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8733b3d1785fae40a2197935fdf0b1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Range: 5
+  ShiftDuration: 0.5
   Team: 0
   Cell: {fileID: 0}
+  IsMoving: 0
+  Path: []
+  Transition: 0
+  PathIndex: 0
+  TransitionOrigin: {x: 0, y: 0, z: 0}
 --- !u!1 &1924536055
 GameObject:
   m_ObjectHideFlags: 0
@@ -779,6 +791,7 @@ MonoBehaviour:
     - {fileID: 1945282433}
   Characters: []
   Order: []
+  OrderTarget: {fileID: 0}
 --- !u!4 &1924536057
 Transform:
   m_ObjectHideFlags: 0
@@ -833,8 +846,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8733b3d1785fae40a2197935fdf0b1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Range: 5
+  ShiftDuration: 0.5
   Team: 0
   Cell: {fileID: 0}
+  IsMoving: 0
+  Path: []
+  Transition: 0
+  PathIndex: 0
+  TransitionOrigin: {x: 0, y: 0, z: 0}
 --- !u!1 &2014277302
 GameObject:
   m_ObjectHideFlags: 0
@@ -947,5 +967,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8733b3d1785fae40a2197935fdf0b1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Range: 5
+  ShiftDuration: 0.5
   Team: 0
   Cell: {fileID: 0}
+  IsMoving: 0
+  Path: []
+  Transition: 0
+  PathIndex: 0
+  TransitionOrigin: {x: 0, y: 0, z: 0}

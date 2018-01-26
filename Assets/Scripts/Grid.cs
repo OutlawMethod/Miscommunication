@@ -27,8 +27,12 @@ public class Grid : MonoBehaviour
                 instance.name = "Cell " + x.ToString() + ":" + y.ToString();
                 instance.SetActive(true);
 
-                Cells[x, y] = instance.GetComponent<Cell>();
-                Cells[x, y].Grid = this;
+                var cell = instance.GetComponent<Cell>();
+                cell.Grid = this;
+                cell.X = x;
+                cell.Y = y;
+
+                Cells[x, y] = cell;
             }
     }
 }
