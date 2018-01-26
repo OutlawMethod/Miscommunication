@@ -48,7 +48,7 @@ public class Manager : MonoBehaviour
     {
         var character = Order[0];
 
-        if (Grid.Hover != null && Dijkstra.HasPath(Grid.Hover))
+        if (Grid.Hover != null && Grid.HasPath(Grid.Hover))
         {
             if (Input.GetMouseButtonDown(0))
                 giveCommand(character, Grid.Hover);
@@ -57,8 +57,8 @@ public class Manager : MonoBehaviour
 
     private void giveCommand(Character character, Cell target)
     {
-        if (Dijkstra.HasPath(target))
-            character.Move(Dijkstra.Path(target));
+        if (Grid.HasPath(target))
+            character.Move(Grid.Path(target));
 
         OrderTarget = character;
         Order.Remove(character);
@@ -80,9 +80,7 @@ public class Manager : MonoBehaviour
 
     private void updateNextOrder()
     {
-        Dijkstra.Setup(Grid, Order[0].Cell, Order[0].Range);
+        Grid.Setup(Grid, Order[0].Cell, Order[0].Range);
         OrderTarget = null;
-
-        Grid.UpdateStatus();
     }
 }

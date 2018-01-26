@@ -18,6 +18,10 @@ public class Cell : MonoBehaviour
 
     public Material Material;
 
+    public Cell Origin;
+    public int Value;
+    public bool Visited;
+
     private void Awake()
     {
         var renderer = GetComponent<Renderer>();
