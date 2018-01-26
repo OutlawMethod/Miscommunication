@@ -94,12 +94,12 @@ public class Manager : MonoBehaviour
                 Order.Remove(OrderTarget);
                 Order.Add(OrderTarget);
                 Order[0].Range = Order[0].MaxRange;
-                OrderTarget = null;
             }
         }
         else
             Order[0].Range = Order[0].MaxRange;
 
         Grid.FindPaths(Grid, Order[0].Cell, Order[0].Range);
+        OrderTarget = null;
     }
 }

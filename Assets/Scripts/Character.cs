@@ -75,14 +75,17 @@ public class Character : MonoBehaviour
                 if (PathIndex + 1 >= Path.Length)
                 {
                     TransitionOrigin = transform.position;
-                    Transition %= 1;
+                    Transition = 0;
                     IsMoving = false;
                 }
             }
             else
             {
                 if (PathIndex >= Path.Length)
+                {
+                    Transition = 0;
                     IsMoving = false;
+                }
             }
         }
         else if (IsAttacking)
