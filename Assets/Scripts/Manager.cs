@@ -31,7 +31,7 @@ public class Manager : MonoBehaviour
         foreach (var character in Characters)
             Order.Add(character);
 
-        Dijkstra.Setup(Grid, Order[0].Cell, Order[0].Range);
+        updateNextOrder();
     }
 
     private void Update()
@@ -39,10 +39,7 @@ public class Manager : MonoBehaviour
         if (OrderTarget != null && OrderTarget.IsMoving)
             return;
         else if (OrderTarget != null)
-        {
-            Dijkstra.Setup(Grid, Order[0].Cell, Order[0].Range);
-            OrderTarget = null;
-        }
+            updateNextOrder();
 
         updateInput();   
     }
@@ -79,5 +76,13 @@ public class Manager : MonoBehaviour
         character.Cell = Grid.Cells[x, y];
 
         Characters.Add(character);
+    }
+
+    private void updateNextOrder()
+    {
+        Dijkstra.Setup(Grid, Order[0].Cell, Order[0].Range);
+        OrderTarget = null;
+
+        Grid.UpdateStatus();
     }
 }

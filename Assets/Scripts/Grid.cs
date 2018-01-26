@@ -35,4 +35,14 @@ public class Grid : MonoBehaviour
                 Cells[x, y] = cell;
             }
     }
+
+    public void UpdateStatus()
+    {
+        for (int x = 0; x < Width; x++)
+            for (int y = 0; y < Height; y++)
+                if (Dijkstra.HasPath(Cells[x, y]))
+                    Cells[x, y].Status = CellStatus.available;
+                else
+                    Cells[x, y].Status = CellStatus.default_;
+    }
 }

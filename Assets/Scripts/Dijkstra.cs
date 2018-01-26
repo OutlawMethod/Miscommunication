@@ -53,9 +53,7 @@ class Dijkstra
                 node.Origin = null;
 
                 _nodes[x, y] = node;
-
-                if (node.Cell.Character == null || node.Cell == origin)
-                    _unvisited.Add(node.Cell);
+                _unvisited.Add(node.Cell);
             }
 
         var current = origin;
@@ -88,6 +86,9 @@ class Dijkstra
 
     private static void consider(Cell cell, Cell origin)
     {
+        if (cell.Character != null)
+            return;
+
         var newValue = _nodes[origin.X, origin.Y].Value + 1;
 
         if (newValue < _nodes[cell.X, cell.Y].Value)
