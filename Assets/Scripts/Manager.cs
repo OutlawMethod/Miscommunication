@@ -1,10 +1,17 @@
 ﻿using UnityEngine;
+using System;
 using System.Collections.Generic;
+
+[Serializable]
+public struct CharacterSet
+{
+    public Character[] Teams;
+}
 
 public class Manager : MonoBehaviour
 {
     public Grid Grid;
-    public Character[] Prefabs;
+    public CharacterSet[] Prefabs;
 
     public List<Character> Characters = new List<Character>();
     public List<Character> Order = new List<Character>();
@@ -47,9 +54,9 @@ public class Manager : MonoBehaviour
         Order.Add(character);
     }
 
-    private void placeCharacter(Character prefab, int x, int y, int team)
+    private void placeCharacter(CharacterSet prefabs, int x, int y, int team)
     {
-        var instance = GameObject.Instantiate(prefab.gameObject);
+        var instance = GameObject.Instantiate(prefabs.Teams[team].gameObject);
         instance.transform.parent = transform;
         instance.transform.position = Grid.Cells[x, y].transform.position;
         instance.SetActive(true);
