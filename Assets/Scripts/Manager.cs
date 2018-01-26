@@ -10,7 +10,12 @@ public struct CharacterSet
 
 public class Manager : MonoBehaviour
 {
-    public Grid Grid;
+    public bool CanSkip
+    {
+        get { return !IsProcessing && Current != null; }
+    }
+
+    public GameGrid Grid;
     public CharacterSet[] Prefabs;
 
     public List<Character> Characters = new List<Character>();
@@ -104,21 +109,23 @@ public class Manager : MonoBehaviour
         if (IsProcessing)
         {
             if (Current.Range <= 0)
-            {
-                Current = null;
-                Grid.ClearStatus();
-
-                if (Team == 0)
-                    Team = 1;
-                else
-                    Team = 0;
-
-            }
+                Skip();
         }
 
         if (Current != null)
             Grid.FindPaths(Current.Cell, Current.Range);
 
         IsProcessing = false;
+    }
+
+    public void Skip()
+    {
+        Current = null;
+        Grid.ClearStatus();
+
+        if (Team == 0)
+            Team = 1;
+        else
+            Team = 0;
     }
 }

@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-public class Grid : MonoBehaviour
+public class GameGrid : MonoBehaviour
 {
     public Cell Prefab;
     public int Width = 10;

@@ -13,7 +13,7 @@ public class Cell : MonoBehaviour
 
     public CellStatus Status;
 
-    public Grid Grid;
+    public GameGrid Grid;
     public int X;
     public int Y;
 
