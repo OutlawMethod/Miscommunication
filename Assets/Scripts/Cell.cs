@@ -36,9 +36,25 @@ public class Cell : MonoBehaviour
     {
         switch (Status)
         {
-            case CellStatus.default_: Material.color = Color.white; break;
-            case CellStatus.available: Material.color = Color.green; break;
-            case CellStatus.enemy: Material.color = Color.red; break;
+            case CellStatus.default_:
+                Material.color = Color.white;
+                break;
+
+            case CellStatus.available:
+                if (Grid.Hover == this)
+                    Material.color = Color.Lerp(Color.green, Color.white, 0.5f);
+                else if (Grid.Hover != null && Grid.Hover.Origin == this)
+                    Material.color = Color.Lerp(Color.green, Color.white, 0.25f);
+                else
+                    Material.color = Color.green;
+                break;
+
+            case CellStatus.enemy:
+                if (Grid.Hover == this)
+                    Material.color = Color.Lerp(Color.red, Color.white, 0.5f);
+                else
+                    Material.color = Color.red;
+                break;
         }
     }
 

@@ -329,7 +329,9 @@ MonoBehaviour:
   Width: 10
   Height: 10
   Spacing: 1.5
+  Origin: {fileID: 0}
   Hover: {fileID: 0}
+  Unvisited: []
 --- !u!4 &521800567
 Transform:
   m_ObjectHideFlags: 0
@@ -384,11 +386,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8733b3d1785fae40a2197935fdf0b1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Range: 5
+  MaxRange: 5
   ShiftDuration: 0.5
+  AttackDuration: 0.25
+  ReturnDuration: 0.5
+  Range: 5
   Team: 0
   Cell: {fileID: 0}
   IsMoving: 0
+  IsAttacking: 0
+  IsReturning: 0
   Path: []
   Transition: 0
   PathIndex: 0
@@ -507,9 +514,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Character: {fileID: 0}
+  Status: 0
   Grid: {fileID: 0}
   X: 0
   Y: 0
+  Material: {fileID: 0}
+  Origin: {fileID: 0}
+  Value: 0
+  Visited: 0
 --- !u!65 &922597506
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -745,11 +757,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8733b3d1785fae40a2197935fdf0b1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Range: 5
+  MaxRange: 5
   ShiftDuration: 0.5
+  AttackDuration: 0.25
+  ReturnDuration: 0.5
+  Range: 5
   Team: 0
   Cell: {fileID: 0}
   IsMoving: 0
+  IsAttacking: 0
+  IsReturning: 0
   Path: []
   Transition: 0
   PathIndex: 0
@@ -846,11 +863,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8733b3d1785fae40a2197935fdf0b1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Range: 5
+  MaxRange: 5
   ShiftDuration: 0.5
+  AttackDuration: 0.25
+  ReturnDuration: 0.5
+  Range: 5
   Team: 0
   Cell: {fileID: 0}
   IsMoving: 0
+  IsAttacking: 0
+  IsReturning: 0
   Path: []
   Transition: 0
   PathIndex: 0
@@ -967,11 +989,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8733b3d1785fae40a2197935fdf0b1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Range: 5
+  MaxRange: 5
   ShiftDuration: 0.5
+  AttackDuration: 0.25
+  ReturnDuration: 0.5
+  Range: 5
   Team: 0
   Cell: {fileID: 0}
   IsMoving: 0
+  IsAttacking: 0
+  IsReturning: 0
   Path: []
   Transition: 0
   PathIndex: 0

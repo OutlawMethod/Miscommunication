@@ -68,8 +68,6 @@ public class Manager : MonoBehaviour
         }
 
         OrderTarget = character;
-        Order.Remove(character);
-        Order.Add(character);
     }
 
     private void placeCharacter(CharacterSet prefabs, int x, int y, int team)
@@ -89,7 +87,19 @@ public class Manager : MonoBehaviour
 
     private void updateNextOrder()
     {
+        if (OrderTarget != null)
+        {
+            if (OrderTarget.Range <= 0)
+            {
+                Order.Remove(OrderTarget);
+                Order.Add(OrderTarget);
+                Order[0].Range = Order[0].MaxRange;
+                OrderTarget = null;
+            }
+        }
+        else
+            Order[0].Range = Order[0].MaxRange;
+
         Grid.FindPaths(Grid, Order[0].Cell, Order[0].Range);
-        OrderTarget = null;
     }
 }

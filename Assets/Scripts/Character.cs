@@ -7,10 +7,12 @@ public class Character : MonoBehaviour
         get { return IsMoving || IsAttacking || IsReturning; }
     }
 
-    public int Range = 5;
+    public int MaxRange = 5;
     public float ShiftDuration = 0.5f;
     public float AttackDuration = 0.25f;
     public float ReturnDuration = 0.5f;
+
+    public int Range;
 
     public int Team;
     public Cell Cell;
@@ -26,6 +28,7 @@ public class Character : MonoBehaviour
 
     public void Attack(Cell[] path)
     {
+        Range = 0;
         Path = path;
         IsMoving = true;
         IsAttacking = true;
@@ -36,6 +39,7 @@ public class Character : MonoBehaviour
 
     public void Move(Cell[] path)
     {
+        Range -= path.Length;
         Path = path;
         IsMoving = true;
         IsAttacking = false;
