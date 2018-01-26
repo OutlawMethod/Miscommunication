@@ -1,24 +1,34 @@
-﻿using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Grid : MonoBehaviour
 {
-    public GameObject Prefab;
+    public Cell Prefab;
     public int Width = 10;
     public int Height = 10;
-    public float Spacing;
+    public float Spacing = 2;
 
-    private List<Cell> _cells = new List<Cell>();
+    public Cell[,] Cells;
 
-    private void Awake()
+    public Cell Hover;
+
+    public void Setup()
     {
         var x0 = -Spacing * Width * 0.5f;
         var y0 = -Spacing * Height * 0.5f;
 
+        Cells = new Cell[Width, Height];
+
         for (int x = 0; x < Width; x++)
             for (int y = 0; y < Height; y++)
             {
-                var instance = GameObject.Instantiate(Prefab);
+                var instance = GameObject.Instantiate(Prefab.gameObject);
+                instance.transform.parent = transform;
+                instance.transform.position = new Vector3(x0 + x * Spacing, 0, y0 + y * Spacing);
+                instance.name = "Cell " + x.ToString() + ":" + y.ToString();
+                instance.SetActive(true);
+
+                Cells[x, y] = instance.GetComponent<Cell>();
+                Cells[x, y].Grid = this;
             }
     }
 }

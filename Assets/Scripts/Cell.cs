@@ -2,13 +2,17 @@
 
 public class Cell : MonoBehaviour
 {
-    void Start()
+    public Character Character;
+
+    public Grid Grid;
+
+    public Cell Front;
+    public Cell Back;
+    public Cell Left;
+    public Cell Right;
+
+    private void OnMouseOver()
     {
-
-    }
-
-    void Update()
-    {
-
+        Grid.Hover = this;
     }
 }
