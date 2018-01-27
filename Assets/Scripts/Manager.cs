@@ -173,9 +173,24 @@ public class Manager : MonoBehaviour
         }
         else
         {
-            if (Grid.Hover != null && Grid.HasPath(Grid.Hover))
+            if (Grid.Hover != null)
             {
-                if (Input.GetMouseButtonDown(0))
+                var canGive = false;
+
+                if (Grid.Hover.Character != null && Grid.Hover.Character.Team != Current.Team && Grid.Hover.IsInAttackRange(Current))
+                {
+                    canGive = true;
+                    Grid.Point(Current.Cell, Grid.Hover);
+                }
+                else if (Grid.HasPath(Grid.Hover))
+                {
+                    canGive = true;
+
+                    if (Grid.Hover.Status == CellStatus.enemy)
+                        Grid.Point(Grid.Hover.AttackOrigin(Current), Grid.Hover);
+                }
+
+                if (canGive && Input.GetMouseButtonDown(0))
                     giveCommand(Current, Grid.Hover);
             }
         }
@@ -183,7 +198,9 @@ public class Manager : MonoBehaviour
 
     private void giveCommand(Character character, Cell target)
     {
-        if (Grid.HasPath(target))
+        if (target.Character != null && target.IsInAttackRange(character))
+            character.Attack(new Cell[] { target });
+        else if (Grid.HasPath(target))
         {
             if (target.Character != null)
                 character.Attack(Grid.AttackPath(target));

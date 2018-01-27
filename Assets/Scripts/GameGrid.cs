@@ -14,9 +14,47 @@ public class GameGrid : MonoBehaviour
     public Cell Hover;
 
     public int HoverTeam = -1;
-    public int HoverRange;
+    public Character Attacker;
 
     public List<Cell> Unvisited = new List<Cell>();
+
+    public GameObject ArrowPrefab;
+    public GameObject Arrow;
+
+    public bool IsPointing;
+
+    public void Point(Cell origin, Cell target)
+    {
+        if (Arrow == null)
+        {
+            Arrow = GameObject.Instantiate(ArrowPrefab);
+            Arrow.transform.parent = transform;
+            Arrow.SetActive(true);
+        }
+
+        Arrow.transform.position = target.transform.position + Vector3.up * 0.3f;
+
+        if (Vector2.Distance(new Vector2(origin.X, origin.Y), new Vector2(target.X, target.Y)) > 1.1f)
+            Arrow.transform.eulerAngles = new Vector3(0, 90, 90);
+        else if (origin.X < target.X)
+            Arrow.transform.eulerAngles = new Vector3(0, 180, 0);
+        else if (origin.X > target.X)
+            Arrow.transform.eulerAngles = new Vector3(0, 0, 0);
+        else if (origin.Y < target.Y)
+            Arrow.transform.eulerAngles = new Vector3(0, 90, 0);
+        else if (origin.Y > target.Y)
+            Arrow.transform.eulerAngles = new Vector3(0, -90, 0);
+
+        IsPointing = true;
+    }
+
+    private void Update()
+    {
+        if (!IsPointing)
+            GameObject.Destroy(Arrow);
+        else
+            IsPointing = false;
+    }
 
     public void Setup()
     {
@@ -57,7 +95,7 @@ public class GameGrid : MonoBehaviour
         var path = new List<Cell>();
         path.Add(target);
 
-        var node = target.AttackOrigin(HoverRange);
+        var node = target.AttackOrigin(Attacker);
 
         while (node.Origin != null)
         {
@@ -89,12 +127,14 @@ public class GameGrid : MonoBehaviour
         for (int x = 0; x < Width; x++)
             for (int y = 0; y < Height; y++)
                 Cells[x, y].Status = CellStatus.default_;
+
+        Attacker = null;
     }
 
     public void FindPaths(Cell origin, int range)
     {
         Origin = origin;
-        HoverRange = range;
+        Attacker = origin.Character;
 
         for (int x = 0; x < Width; x++)
             for (int y = 0; y < Height; y++)
