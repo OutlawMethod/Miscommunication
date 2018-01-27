@@ -177,6 +177,11 @@ public class Manager : MonoBehaviour
             {
                 if (Input.GetMouseButtonDown(0))
                     giveCommand(Current, Grid.Hover);
+                else if (Grid.Hover.Status == CellStatus.enemy)
+                {
+                    var node = Grid.Hover.AttackOrigin(Current);
+                    Grid.Point(node, Grid.Hover);
+                }
             }
         }
     }

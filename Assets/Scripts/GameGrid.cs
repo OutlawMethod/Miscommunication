@@ -18,6 +18,42 @@ public class GameGrid : MonoBehaviour
 
     public List<Cell> Unvisited = new List<Cell>();
 
+    public GameObject ArrowPrefab;
+    public GameObject Arrow;
+
+    public bool IsPointing;
+
+    public void Point(Cell origin, Cell target)
+    {
+        if (Arrow == null)
+        {
+            Arrow = GameObject.Instantiate(ArrowPrefab);
+            Arrow.transform.parent = transform;
+            Arrow.SetActive(true);
+        }
+
+        Arrow.transform.position = target.transform.position + Vector3.up * 0.3f;
+
+        if (origin.X < target.X)
+            Arrow.transform.eulerAngles = new Vector3(0, 180, 0);
+        else if (origin.X > target.X)
+            Arrow.transform.eulerAngles = new Vector3(0, 0, 0);
+        else if (origin.Y < target.Y)
+            Arrow.transform.eulerAngles = new Vector3(0, 90, 0);
+        else if (origin.Y > target.Y)
+            Arrow.transform.eulerAngles = new Vector3(0, -90, 0);
+
+        IsPointing = true;
+    }
+
+    private void Update()
+    {
+        if (!IsPointing)
+            GameObject.Destroy(Arrow);
+        else
+            IsPointing = false;
+    }
+
     public void Setup()
     {
         var x0 = -Spacing * Width * 0.5f;
