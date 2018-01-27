@@ -206,6 +206,7 @@ MonoBehaviour:
     AttackDuration: 0
     ReturnDuration: 0
     DeathDuration: 0
+    TurnDuration: 0
   Range: 0
   Lives: 0
   Team: 0
@@ -215,10 +216,13 @@ MonoBehaviour:
   IsAttacking: 0
   IsReturning: 0
   IsDying: 0
+  IsTurning: 0
   Path: []
   Transition: 0
   PathIndex: 0
   TransitionOrigin: {x: 0, y: 0, z: 0}
+  TurnOrigin: 0
+  TurnTarget: 0
 --- !u!1 &91501897
 GameObject:
   m_ObjectHideFlags: 0
@@ -515,6 +519,7 @@ MonoBehaviour:
     AttackDuration: 0
     ReturnDuration: 0
     DeathDuration: 0
+    TurnDuration: 0
   Range: 5
   Lives: 0
   Team: 0
@@ -524,10 +529,13 @@ MonoBehaviour:
   IsAttacking: 0
   IsReturning: 0
   IsDying: 0
+  IsTurning: 0
   Path: []
   Transition: 0
   PathIndex: 0
   TransitionOrigin: {x: 0, y: 0, z: 0}
+  TurnOrigin: 0
+  TurnTarget: 0
 --- !u!1 &252364065
 GameObject:
   m_ObjectHideFlags: 0
@@ -617,6 +625,7 @@ MonoBehaviour:
     AttackDuration: 0
     ReturnDuration: 0
     DeathDuration: 0
+    TurnDuration: 0
   Range: 5
   Lives: 0
   Team: 0
@@ -626,10 +635,13 @@ MonoBehaviour:
   IsAttacking: 0
   IsReturning: 0
   IsDying: 0
+  IsTurning: 0
   Path: []
   Transition: 0
   PathIndex: 0
   TransitionOrigin: {x: 0, y: 0, z: 0}
+  TurnOrigin: 0
+  TurnTarget: 0
 --- !u!1 &352952948
 GameObject:
   m_ObjectHideFlags: 0
@@ -1086,6 +1098,7 @@ MonoBehaviour:
     AttackDuration: 0
     ReturnDuration: 0
     DeathDuration: 0
+    TurnDuration: 0
   Range: 5
   Lives: 0
   Team: 0
@@ -1095,10 +1108,13 @@ MonoBehaviour:
   IsAttacking: 0
   IsReturning: 0
   IsDying: 0
+  IsTurning: 0
   Path: []
   Transition: 0
   PathIndex: 0
   TransitionOrigin: {x: 0, y: 0, z: 0}
+  TurnOrigin: 0
+  TurnTarget: 0
 --- !u!1001 &678701531
 Prefab:
   m_ObjectHideFlags: 0
@@ -1196,6 +1212,7 @@ MonoBehaviour:
     AttackDuration: 0
     ReturnDuration: 0
     DeathDuration: 0
+    TurnDuration: 0
   Range: 0
   Lives: 0
   Team: 0
@@ -1205,10 +1222,13 @@ MonoBehaviour:
   IsAttacking: 0
   IsReturning: 0
   IsDying: 0
+  IsTurning: 0
   Path: []
   Transition: 0
   PathIndex: 0
   TransitionOrigin: {x: 0, y: 0, z: 0}
+  TurnOrigin: 0
+  TurnTarget: 0
 --- !u!1 &711550839
 GameObject:
   m_ObjectHideFlags: 0
@@ -1287,6 +1307,7 @@ MonoBehaviour:
     AttackDuration: 0
     ReturnDuration: 0
     DeathDuration: 0
+    TurnDuration: 0
   Range: 5
   Lives: 0
   Team: 0
@@ -1296,10 +1317,13 @@ MonoBehaviour:
   IsAttacking: 0
   IsReturning: 0
   IsDying: 0
+  IsTurning: 0
   Path: []
   Transition: 0
   PathIndex: 0
   TransitionOrigin: {x: 0, y: 0, z: 0}
+  TurnOrigin: 0
+  TurnTarget: 0
 --- !u!1 &922597503
 GameObject:
   m_ObjectHideFlags: 0
@@ -1677,6 +1701,7 @@ MonoBehaviour:
     AttackDuration: 0
     ReturnDuration: 0
     DeathDuration: 0
+    TurnDuration: 0
   Range: 5
   Lives: 0
   Team: 0
@@ -1686,10 +1711,13 @@ MonoBehaviour:
   IsAttacking: 0
   IsReturning: 0
   IsDying: 0
+  IsTurning: 0
   Path: []
   Transition: 0
   PathIndex: 0
   TransitionOrigin: {x: 0, y: 0, z: 0}
+  TurnOrigin: 0
+  TurnTarget: 0
 --- !u!1 &1524806726
 GameObject:
   m_ObjectHideFlags: 0
@@ -2099,6 +2127,7 @@ MonoBehaviour:
     AttackDuration: 0
     ReturnDuration: 0
     DeathDuration: 0
+    TurnDuration: 0
   Range: 5
   Lives: 0
   Team: 0
@@ -2108,10 +2137,13 @@ MonoBehaviour:
   IsAttacking: 0
   IsReturning: 0
   IsDying: 0
+  IsTurning: 0
   Path: []
   Transition: 0
   PathIndex: 0
   TransitionOrigin: {x: 0, y: 0, z: 0}
+  TurnOrigin: 0
+  TurnTarget: 0
 --- !u!1 &1912181368
 GameObject:
   m_ObjectHideFlags: 0
@@ -2162,6 +2194,7 @@ MonoBehaviour:
     AttackDuration: 0
     ReturnDuration: 0
     DeathDuration: 0
+    TurnDuration: 0
   Range: 5
   Lives: 0
   Team: 0
@@ -2171,10 +2204,13 @@ MonoBehaviour:
   IsAttacking: 0
   IsReturning: 0
   IsDying: 0
+  IsTurning: 0
   Path: []
   Transition: 0
   PathIndex: 0
   TransitionOrigin: {x: 0, y: 0, z: 0}
+  TurnOrigin: 0
+  TurnTarget: 0
 --- !u!1 &1924536055
 GameObject:
   m_ObjectHideFlags: 0
@@ -2214,6 +2250,7 @@ MonoBehaviour:
     AttackDuration: 0.1
     ReturnDuration: 0.4
     DeathDuration: 0.5
+    TurnDuration: 0.2
   - Name: Fox
     MaxRange: 4
     MaxLives: 7
@@ -2222,6 +2259,7 @@ MonoBehaviour:
     AttackDuration: 0.1
     ReturnDuration: 0.4
     DeathDuration: 0.5
+    TurnDuration: 0.2
   - Name: Cat
     MaxRange: 3
     MaxLives: 9
@@ -2230,6 +2268,7 @@ MonoBehaviour:
     AttackDuration: 0.2
     ReturnDuration: 0.4
     DeathDuration: 0.5
+    TurnDuration: 0.2
   - Name: Rabbits
     MaxRange: 5
     MaxLives: 5
@@ -2238,6 +2277,7 @@ MonoBehaviour:
     AttackDuration: 0.1
     ReturnDuration: 0.4
     DeathDuration: 0.5
+    TurnDuration: 0.2
   - Name: Racoon
     MaxRange: 4
     MaxLives: 7
@@ -2246,6 +2286,7 @@ MonoBehaviour:
     AttackDuration: 0.1
     ReturnDuration: 0.4
     DeathDuration: 0.5
+    TurnDuration: 0.2
   Prefabs:
   - Teams:
     - {fileID: 570108751}
@@ -2330,6 +2371,7 @@ MonoBehaviour:
     AttackDuration: 0
     ReturnDuration: 0
     DeathDuration: 0
+    TurnDuration: 0
   Range: 5
   Lives: 0
   Team: 0
@@ -2339,10 +2381,13 @@ MonoBehaviour:
   IsAttacking: 0
   IsReturning: 0
   IsDying: 0
+  IsTurning: 0
   Path: []
   Transition: 0
   PathIndex: 0
   TransitionOrigin: {x: 0, y: 0, z: 0}
+  TurnOrigin: 0
+  TurnTarget: 0
 --- !u!1 &2065867899
 GameObject:
   m_ObjectHideFlags: 0

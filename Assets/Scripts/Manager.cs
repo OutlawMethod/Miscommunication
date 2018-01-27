@@ -197,6 +197,8 @@ public class Manager : MonoBehaviour
         var instance = GameObject.Instantiate(Prefabs[type].Teams[team].gameObject);
         instance.transform.parent = transform;
         instance.transform.position = Grid.Cells[x, y].transform.position;
+        instance.transform.eulerAngles = new Vector3(instance.transform.eulerAngles.x, 180 * team, instance.transform.eulerAngles.z);
+
         instance.SetActive(true);
 
         var character = instance.GetComponent<Character>();
