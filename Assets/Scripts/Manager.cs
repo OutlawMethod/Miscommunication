@@ -12,12 +12,12 @@ public class Manager : MonoBehaviour
 {
     public bool CanSkip
     {
-        get { return Processing.Count == 0; }
+        get { return Processing.Count == 0 && isActiveAndEnabled; }
     }
 
     public bool NeedPanel
     {
-        get { return Current != null || HoverCharacter != null; }
+        get { return isActiveAndEnabled && (Current != null || HoverCharacter != null); }
     }
 
     public Character HoverCharacter
@@ -60,14 +60,31 @@ public class Manager : MonoBehaviour
     private void Awake()
     {
         Grid.Setup();
+    }
 
-        for (int i = 0; i < Prefabs.Length; i++)
+    public void Restart()
+    {
+        foreach (var character in Characters)
+            Destroy(character.gameObject);
+
+        Characters.Clear();
+        Panels.Clear();
+
+        for (int i = 0; i < 2; i++)
         {
             placeCharacter(i, i + 1, 0, 0);
-            placeCharacter(i, Prefabs.Length - i, Grid.Height - 1, 1);
+            placeCharacter(i, 2 - i, Grid.Height - 1, 1);
         }
 
         Grid.ClearStatus();
+    }
+
+    public void Stop()
+    {
+        foreach (var panel in Panels)
+            Destroy(panel.gameObject);
+
+        Panels.Clear();
     }
 
     private void Update()

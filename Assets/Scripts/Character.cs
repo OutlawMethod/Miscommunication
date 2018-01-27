@@ -16,6 +16,7 @@ public class Character : MonoBehaviour
     public Manager Manager;
     public Cell Cell;
     public HeartPanel Hearts;
+    public HeartCount HeartCount;
 
     public bool IsMoving;
     public bool IsAttacking;
