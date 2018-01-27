@@ -1000,7 +1000,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d20dc9e7ea4db9c4db0aa2b449d3d950, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Heart: {fileID: 892390339}
   Count: {fileID: 1929407191}
+  Fade: 1
+  FadeDuration: 0.3
   Character: {fileID: 0}
   Manager: {fileID: 0}
 --- !u!222 &507593728
@@ -1449,8 +1452,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -20.8, y: 0.8}
-  m_SizeDelta: {x: 32, y: 32}
+  m_AnchoredPosition: {x: -11.4, y: 0.8}
+  m_SizeDelta: {x: 24, y: 24}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &892390339
 MonoBehaviour:
@@ -2215,9 +2218,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FallSpeed: 500
   BlinkDuration: 0.1
+  FadeDuration: 0.3
   Target: 0
   Removed: 0
+  Fading: 0
   Fall: 0
+  Fade: 1
   Blink: 0
   BlinkDirection: 1
 --- !u!1 &1567910670
@@ -2665,7 +2671,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 26.8, y: 3}
+  m_AnchoredPosition: {x: 29, y: 0.4}
   m_SizeDelta: {x: 50, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1929407191
@@ -2689,7 +2695,7 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 36
+    m_FontSize: 28
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 2

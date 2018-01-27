@@ -5,13 +5,18 @@ public class Heart : MonoBehaviour
 {
     public float FallSpeed = 100;
     public float BlinkDuration = 0.3f;
+    public float FadeDuration = 0.3f;
 
     public bool Target;
     public bool Removed;
-    public float Fall;
+    public bool Fading;
 
+    public float Fall;
+    public float Fade;
     public float Blink;
     public int BlinkDirection = 1;
+
+    public Character Character;
 
     public bool HasFallen
     {
@@ -20,12 +25,23 @@ public class Heart : MonoBehaviour
 
     private void Update()
     {
+        if (Character == null)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
         if (Removed && !HasFallen)
         {
             var move = Time.deltaTime * FallSpeed;
             Fall += move;
             transform.position -= Vector3.up * move;
         }
+
+        if (Fading)
+            Fade = Mathf.Clamp01(Fade + Time.deltaTime / FadeDuration);
+        else
+            Fade = Mathf.Clamp01(Fade - Time.deltaTime / FadeDuration);
 
         if (Target)
         {
@@ -53,6 +69,6 @@ public class Heart : MonoBehaviour
         else
             Blink = 0;
 
-        GetComponent<Image>().color = new Color(1, 1, 1, 1 - Blink);
+        GetComponent<Image>().color = new Color(1, 1, 1, 1 - Mathf.Clamp01(Blink + Fade));
     }
 }
