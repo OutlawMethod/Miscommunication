@@ -7,10 +7,7 @@ public class Character : MonoBehaviour
         get { return IsMoving || IsAttacking || IsReturning; }
     }
 
-    public int MaxRange = 5;
-    public float ShiftDuration = 0.5f;
-    public float AttackDuration = 0.25f;
-    public float ReturnDuration = 0.5f;
+    public CharacterDesc Desc;
 
     public int Range;
 
@@ -52,7 +49,7 @@ public class Character : MonoBehaviour
     {
         if (IsMoving)
         {
-            Transition += Time.deltaTime / ShiftDuration;
+            Transition += Time.deltaTime / Desc.ShiftDuration;
 
             while (Transition >= 1 && PathIndex < Path.Length)
             {
@@ -90,7 +87,7 @@ public class Character : MonoBehaviour
         }
         else if (IsAttacking)
         {
-            Transition += Time.deltaTime / AttackDuration;
+            Transition += Time.deltaTime / Desc.AttackDuration;
 
             if (Transition >= 1)
             {
@@ -104,7 +101,7 @@ public class Character : MonoBehaviour
         }
         else if (IsReturning)
         {
-            Transition += Time.deltaTime / AttackDuration;
+            Transition += Time.deltaTime / Desc.ReturnDuration;
 
             if (Transition >= 1)
                 IsReturning = false;

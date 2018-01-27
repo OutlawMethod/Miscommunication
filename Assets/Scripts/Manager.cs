@@ -15,10 +15,33 @@ public class Manager : MonoBehaviour
         get { return !IsProcessing && Current != null; }
     }
 
+    public bool NeedPanel
+    {
+        get { return Current != null || HoverCharacter != null; }
+    }
+
+    public Character HoverCharacter
+    {
+        get
+        {
+            if (Current != null)
+                return null;
+
+            if (Grid.Hover != null && Grid.Hover.Character != null && Grid.Hover.Character.Team == Team)
+                return Grid.Hover.Character;
+
+            return null;
+        }
+    }
+
     public GameGrid Grid;
+    public Canvas Canvas;
+    public CharacterPanel Panel;
+    public CharacterDesc[] Descriptions;
     public CharacterSet[] Prefabs;
 
     public List<Character> Characters = new List<Character>();
+    public List<CharacterPanel> Panels = new List<CharacterPanel>();
 
     public int Team = 0;
 
@@ -31,8 +54,8 @@ public class Manager : MonoBehaviour
 
         for (int i = 0; i < Prefabs.Length; i++)
         {
-            placeCharacter(Prefabs[i], i, 0, 0);
-            placeCharacter(Prefabs[i], i, Grid.Height - 1, 1);
+            placeCharacter(i, i, 0, 0);
+            placeCharacter(i, i, Grid.Height - 1, 1);
         }
 
         Grid.ClearStatus();
@@ -43,11 +66,61 @@ public class Manager : MonoBehaviour
         Grid.HoverTeam = -1;
 
         if (IsProcessing && Current.IsActing)
+        {
+            updatePanels();
             return;
+        }
         else if (IsProcessing)
             updateNextOrder();
 
-        updateInput();   
+        updateInput();
+        updatePanels();
+    }
+
+    private void pushPanel(Character character)
+    {
+        while (Panels.Count > 1)
+        {
+            GameObject.Destroy(Panels[1].gameObject);
+            Panels.RemoveAt(1);
+        }
+
+        if (Panels.Count > 0 && Panels[0].Character == character)
+            return;
+
+        var instance = GameObject.Instantiate(Panel.transform);
+        instance.SetParent(Canvas.transform);
+        var rect = instance.GetComponent<RectTransform>();
+        rect.anchoredPosition = new Vector2(0, 0);
+        rect.sizeDelta = new Vector2(500, 0);
+        instance.gameObject.SetActive(true);
+
+        var panel = instance.GetComponent<CharacterPanel>();
+        panel.Character = character;
+        panel.Fill();
+
+        Panels.Insert(0, panel);
+    }
+
+    private void updatePanels()
+    {
+        if (Panels.Count > 1)
+            if (Panels[1].FadeOut())
+            {
+                GameObject.Destroy(Panels[1].gameObject);
+                Panels.RemoveAt(1);
+            }
+
+        if (Panels.Count > 0)
+        {
+            if (NeedPanel)
+                Panels[0].FadeIn();
+            else if (Panels[0].FadeOut())
+            {
+                GameObject.Destroy(Panels[0].gameObject);
+                Panels.RemoveAt(0);
+            }
+        }
     }
 
     private void updateInput()
@@ -57,12 +130,16 @@ public class Manager : MonoBehaviour
             Grid.HoverTeam = Team;
 
             if (Grid.Hover != null && Grid.Hover.Character != null && Grid.Hover.Character.Team == Team)
+            {
+                pushPanel(Grid.Hover.Character);
+
                 if (Input.GetMouseButtonDown(0))
                 {
                     Current = Grid.Hover.Character;
-                    Current.Range = Current.MaxRange;
+                    Current.Range = Current.Desc.MaxRange;
                     updateNextOrder();
                 }
+            }
         }
         else
         {
@@ -78,8 +155,6 @@ public class Manager : MonoBehaviour
     {
         if (Grid.HasPath(target))
         {
-            var path = Grid.Path(target);
-
             if (target.Character != null)
                 character.Attack(Grid.Path(target));
             else
@@ -89,9 +164,9 @@ public class Manager : MonoBehaviour
         IsProcessing = true;
     }
 
-    private void placeCharacter(CharacterSet prefabs, int x, int y, int team)
+    private void placeCharacter(int type, int x, int y, int team)
     {
-        var instance = GameObject.Instantiate(prefabs.Teams[team].gameObject);
+        var instance = GameObject.Instantiate(Prefabs[type].Teams[team].gameObject);
         instance.transform.parent = transform;
         instance.transform.position = Grid.Cells[x, y].transform.position;
         instance.SetActive(true);
@@ -100,6 +175,7 @@ public class Manager : MonoBehaviour
         character.Team = team;
         character.Cell = Grid.Cells[x, y];
         character.Cell.Character = character;
+        character.Desc = Descriptions[type];
 
         Characters.Add(character);
     }
@@ -113,7 +189,10 @@ public class Manager : MonoBehaviour
         }
 
         if (Current != null)
+        {
             Grid.FindPaths(Current.Cell, Current.Range);
+            pushPanel(Current);
+        }
 
         IsProcessing = false;
     }

@@ -65,4 +65,10 @@ public class Cell : MonoBehaviour
     {
         Grid.Hover = this;
     }
+
+    private void OnMouseExit()
+    {
+        if (Grid.Hover == this)
+            Grid.Hover = null;
+    }
 }
