@@ -4,7 +4,7 @@ public class Character : MonoBehaviour
 {
     public bool IsActing
     {
-        get { return IsMoving || IsAttacking || IsReturning || IsDying; }
+        get { return IsMoving || IsAttacking || IsReturning || IsDying || IsTurning; }
     }
 
     public CharacterDesc Desc;
@@ -20,17 +20,34 @@ public class Character : MonoBehaviour
     public bool IsAttacking;
     public bool IsReturning;
     public bool IsDying;
+    public bool IsTurning;
 
     public Cell[] Path;
     public float Transition;
     public int PathIndex;
     public Vector3 TransitionOrigin;
+    public float TurnOrigin;
+    public float TurnTarget;
+    public float TurnTransition;
 
     public void Die()
     {
         IsDying = true;
         TransitionOrigin = transform.position;
         Manager.Process(this);
+    }
+
+    public void Turn(float target)
+    {
+        var current = transform.eulerAngles.y;
+
+        if (Mathf.Abs(Mathf.DeltaAngle(current, target)) < 1)
+            return;
+
+        IsTurning = true;
+        TurnOrigin = current;
+        TurnTarget = target;
+        TurnTransition = 0;
     }
 
     public void Attack(Cell[] path)
@@ -42,6 +59,7 @@ public class Character : MonoBehaviour
         Transition = 0;
         PathIndex = 0;
         TransitionOrigin = transform.position;
+        prepareToMoveTo(path[0]);
         Manager.Process(this);
     }
 
@@ -54,7 +72,20 @@ public class Character : MonoBehaviour
         Transition = 0;
         PathIndex = 0;
         TransitionOrigin = transform.position;
+        prepareToMoveTo(path[0]);
         Manager.Process(this);
+    }
+
+    private void prepareToMoveTo(Cell next)
+    {
+        if (next.X > Cell.X)
+            Turn(90);
+        else if (next.X < Cell.X)
+            Turn(-90);
+        else if (next.Y > Cell.Y)
+            Turn(0);
+        else if (next.Y < Cell.Y)
+            Turn(180);
     }
 
     private void Update()
@@ -71,6 +102,18 @@ public class Character : MonoBehaviour
 
             transform.position = Vector3.Lerp(TransitionOrigin, TransitionOrigin - Vector3.up * 1.5f, Transition);
         }
+        else if (IsTurning)
+        {
+            TurnTransition += Time.deltaTime / Desc.TurnDuration;
+
+            if (TurnTransition >= 1)
+            {
+                TurnTransition = 1;
+                IsTurning = false;
+            }
+
+            transform.eulerAngles = new Vector3(transform.eulerAngles.x, Mathf.LerpAngle(TurnOrigin, TurnTarget, TurnTransition), transform.eulerAngles.z);
+        }
         else if (IsMoving)
         {
             Transition += Time.deltaTime / Desc.ShiftDuration;
@@ -86,6 +129,9 @@ public class Character : MonoBehaviour
                 Transition -= 1;
                 TransitionOrigin = transform.position;
                 PathIndex++;
+
+                if (PathIndex < Path.Length)
+                    prepareToMoveTo(Path[PathIndex]);
             }
 
             if (PathIndex < Path.Length)
@@ -98,6 +144,7 @@ public class Character : MonoBehaviour
                     TransitionOrigin = transform.position;
                     Transition = 0;
                     IsMoving = false;
+                    prepareToMoveTo(Path[Path.Length - 1]);
                 }
             }
             else
