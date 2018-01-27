@@ -4,6 +4,7 @@ using System.Collections.Generic;
 public class HeartPanel : MonoBehaviour
 {
     public GameObject Prefab;
+    public float Spacing = 48;
 
     public Character Character;
     public Manager Manager;
@@ -35,7 +36,7 @@ public class HeartPanel : MonoBehaviour
     {
         var instance = GameObject.Instantiate(Prefab);
         instance.transform.parent = transform;
-        instance.GetComponent<RectTransform>().anchoredPosition = new Vector2(x * 20, y * 20);
+        instance.GetComponent<RectTransform>().anchoredPosition = new Vector2(x * Spacing, y * Spacing);
         instance.SetActive(true);
 
         Hearts.Add(instance.GetComponent<Heart>());
