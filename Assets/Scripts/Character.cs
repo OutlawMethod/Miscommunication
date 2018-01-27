@@ -4,7 +4,7 @@ public class Character : MonoBehaviour
 {
     public bool IsActing
     {
-        get { return IsMoving || IsAttacking || IsReturning; }
+        get { return IsMoving || IsAttacking || IsReturning || IsDying; }
     }
 
     public CharacterDesc Desc;
@@ -13,16 +13,25 @@ public class Character : MonoBehaviour
     public int Lives;
 
     public int Team;
+    public Manager Manager;
     public Cell Cell;
 
     public bool IsMoving;
     public bool IsAttacking;
     public bool IsReturning;
+    public bool IsDying;
 
     public Cell[] Path;
     public float Transition;
     public int PathIndex;
     public Vector3 TransitionOrigin;
+
+    public void Die()
+    {
+        IsDying = true;
+        TransitionOrigin = transform.position;
+        Manager.Process(this);
+    }
 
     public void Attack(Cell[] path)
     {
@@ -33,6 +42,7 @@ public class Character : MonoBehaviour
         Transition = 0;
         PathIndex = 0;
         TransitionOrigin = transform.position;
+        Manager.Process(this);
     }
 
     public void Move(Cell[] path)
@@ -44,11 +54,24 @@ public class Character : MonoBehaviour
         Transition = 0;
         PathIndex = 0;
         TransitionOrigin = transform.position;
+        Manager.Process(this);
     }
 
     private void Update()
     {
-        if (IsMoving)
+        if (IsDying)
+        {
+            Transition += Time.deltaTime / Desc.DeathDuration;
+
+            if (Transition >= 1)
+            {
+                Transition = 1;
+                IsDying = false;
+            }
+
+            transform.position = Vector3.Lerp(TransitionOrigin, TransitionOrigin - Vector3.up * 1.5f, Transition);
+        }
+        else if (IsMoving)
         {
             Transition += Time.deltaTime / Desc.ShiftDuration;
 
@@ -92,6 +115,16 @@ public class Character : MonoBehaviour
 
             if (Transition >= 1)
             {
+                var target = Path[Path.Length - 1].Character;
+
+                if (target != null)
+                {
+                    target.Lives -= 4;
+
+                    if (target.Lives <= 0)
+                        target.Die();
+                }
+
                 IsAttacking = false;
                 IsReturning = true;
                 Transition = 0;

@@ -49,6 +49,12 @@ public class Manager : MonoBehaviour
 
     public List<Character> Processing = new List<Character>();
 
+    public void Process(Character character)
+    {
+        if (!Processing.Contains(character))
+            Processing.Add(character);
+    }
+
     private void Awake()
     {
         Grid.Setup();
@@ -83,6 +89,7 @@ public class Manager : MonoBehaviour
             updateNextOrder();
         }
 
+        updateDead();
         updateInput();
         updatePanels();
     }
@@ -110,6 +117,19 @@ public class Manager : MonoBehaviour
         panel.Fill();
 
         Panels.Insert(0, panel);
+    }
+
+    private void updateDead()
+    {
+    LOOP:
+        foreach (var character in Characters)
+            if (character.Lives <= 0 && !character.IsActing)
+            {
+                if (character.Cell != null) character.Cell.Character = null;
+                GameObject.Destroy(character.gameObject);
+                Characters.Remove(character);
+                goto LOOP;
+            }
     }
 
     private void updatePanels()
@@ -170,9 +190,6 @@ public class Manager : MonoBehaviour
             else
                 character.Move(Grid.Path(target));
         }
-
-        if (!Processing.Contains(character))
-            Processing.Add(character);
     }
 
     private void placeCharacter(int type, int x, int y, int team)
@@ -187,6 +204,8 @@ public class Manager : MonoBehaviour
         character.Cell = Grid.Cells[x, y];
         character.Cell.Character = character;
         character.Desc = Descriptions[type];
+        character.Lives = character.Desc.MaxLives;
+        character.Manager = this;
 
         Characters.Add(character);
     }

@@ -10,4 +10,5 @@ public struct CharacterDesc
     public float ShiftDuration;
     public float AttackDuration;
     public float ReturnDuration;
+    public float DeathDuration;
 }

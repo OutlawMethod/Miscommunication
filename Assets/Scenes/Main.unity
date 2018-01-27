@@ -403,15 +403,20 @@ MonoBehaviour:
   Desc:
     Name: 
     MaxRange: 0
+    MaxLives: 0
     ShiftDuration: 0
     AttackDuration: 0
     ReturnDuration: 0
+    DeathDuration: 0
   Range: 5
+  Lives: 0
   Team: 0
+  Manager: {fileID: 0}
   Cell: {fileID: 0}
   IsMoving: 0
   IsAttacking: 0
   IsReturning: 0
+  IsDying: 0
   Path: []
   Transition: 0
   PathIndex: 0
@@ -499,15 +504,20 @@ MonoBehaviour:
   Desc:
     Name: 
     MaxRange: 0
+    MaxLives: 0
     ShiftDuration: 0
     AttackDuration: 0
     ReturnDuration: 0
+    DeathDuration: 0
   Range: 5
+  Lives: 0
   Team: 0
+  Manager: {fileID: 0}
   Cell: {fileID: 0}
   IsMoving: 0
   IsAttacking: 0
   IsReturning: 0
+  IsDying: 0
   Path: []
   Transition: 0
   PathIndex: 0
@@ -961,15 +971,20 @@ MonoBehaviour:
   Desc:
     Name: 
     MaxRange: 0
+    MaxLives: 0
     ShiftDuration: 0
     AttackDuration: 0
     ReturnDuration: 0
+    DeathDuration: 0
   Range: 5
+  Lives: 0
   Team: 0
+  Manager: {fileID: 0}
   Cell: {fileID: 0}
   IsMoving: 0
   IsAttacking: 0
   IsReturning: 0
+  IsDying: 0
   Path: []
   Transition: 0
   PathIndex: 0
@@ -1046,15 +1061,20 @@ MonoBehaviour:
   Desc:
     Name: 
     MaxRange: 0
+    MaxLives: 0
     ShiftDuration: 0
     AttackDuration: 0
     ReturnDuration: 0
+    DeathDuration: 0
   Range: 5
+  Lives: 0
   Team: 0
+  Manager: {fileID: 0}
   Cell: {fileID: 0}
   IsMoving: 0
   IsAttacking: 0
   IsReturning: 0
+  IsDying: 0
   Path: []
   Transition: 0
   PathIndex: 0
@@ -1500,15 +1520,20 @@ MonoBehaviour:
   Desc:
     Name: 
     MaxRange: 0
+    MaxLives: 0
     ShiftDuration: 0
     AttackDuration: 0
     ReturnDuration: 0
+    DeathDuration: 0
   Range: 5
+  Lives: 0
   Team: 0
+  Manager: {fileID: 0}
   Cell: {fileID: 0}
   IsMoving: 0
   IsAttacking: 0
   IsReturning: 0
+  IsDying: 0
   Path: []
   Transition: 0
   PathIndex: 0
@@ -1557,15 +1582,20 @@ MonoBehaviour:
   Desc:
     Name: 
     MaxRange: 0
+    MaxLives: 0
     ShiftDuration: 0
     AttackDuration: 0
     ReturnDuration: 0
+    DeathDuration: 0
   Range: 5
+  Lives: 0
   Team: 0
+  Manager: {fileID: 0}
   Cell: {fileID: 0}
   IsMoving: 0
   IsAttacking: 0
   IsReturning: 0
+  IsDying: 0
   Path: []
   Transition: 0
   PathIndex: 0
@@ -1973,15 +2003,20 @@ MonoBehaviour:
   Desc:
     Name: 
     MaxRange: 0
+    MaxLives: 0
     ShiftDuration: 0
     AttackDuration: 0
     ReturnDuration: 0
+    DeathDuration: 0
   Range: 5
+  Lives: 0
   Team: 0
+  Manager: {fileID: 0}
   Cell: {fileID: 0}
   IsMoving: 0
   IsAttacking: 0
   IsReturning: 0
+  IsDying: 0
   Path: []
   Transition: 0
   PathIndex: 0
@@ -2030,15 +2065,20 @@ MonoBehaviour:
   Desc:
     Name: 
     MaxRange: 0
+    MaxLives: 0
     ShiftDuration: 0
     AttackDuration: 0
     ReturnDuration: 0
+    DeathDuration: 0
   Range: 5
+  Lives: 0
   Team: 0
+  Manager: {fileID: 0}
   Cell: {fileID: 0}
   IsMoving: 0
   IsAttacking: 0
   IsReturning: 0
+  IsDying: 0
   Path: []
   Transition: 0
   PathIndex: 0
@@ -2158,15 +2198,20 @@ MonoBehaviour:
   Desc:
     Name: 
     MaxRange: 0
+    MaxLives: 0
     ShiftDuration: 0
     AttackDuration: 0
     ReturnDuration: 0
+    DeathDuration: 0
   Range: 5
+  Lives: 0
   Team: 0
+  Manager: {fileID: 0}
   Cell: {fileID: 0}
   IsMoving: 0
   IsAttacking: 0
   IsReturning: 0
+  IsDying: 0
   Path: []
   Transition: 0
   PathIndex: 0
@@ -2204,29 +2249,39 @@ MonoBehaviour:
   Descriptions:
   - Name: Dog
     MaxRange: 4
-    ShiftDuration: 0.4
-    AttackDuration: 0.2
+    MaxLives: 7
+    ShiftDuration: 0.2
+    AttackDuration: 0.1
     ReturnDuration: 0.4
+    DeathDuration: 0.5
   - Name: Fox
     MaxRange: 4
-    ShiftDuration: 0.3
-    AttackDuration: 0.2
+    MaxLives: 7
+    ShiftDuration: 0.2
+    AttackDuration: 0.1
     ReturnDuration: 0.4
+    DeathDuration: 0.5
   - Name: Cat
     MaxRange: 3
+    MaxLives: 9
     ShiftDuration: 0.3
     AttackDuration: 0.2
     ReturnDuration: 0.4
+    DeathDuration: 0.5
   - Name: Rabbits
     MaxRange: 5
-    ShiftDuration: 0.3
-    AttackDuration: 0.2
+    MaxLives: 5
+    ShiftDuration: 0.2
+    AttackDuration: 0.1
     ReturnDuration: 0.4
+    DeathDuration: 0.5
   - Name: Racoon
     MaxRange: 4
-    ShiftDuration: 0.3
-    AttackDuration: 0.2
+    MaxLives: 7
+    ShiftDuration: 0.2
+    AttackDuration: 0.1
     ReturnDuration: 0.4
+    DeathDuration: 0.5
   Prefabs:
   - Teams:
     - {fileID: 570108751}
@@ -2247,7 +2302,7 @@ MonoBehaviour:
   Panels: []
   Team: 0
   Current: {fileID: 0}
-  IsProcessing: 0
+  Processing: []
 --- !u!4 &1924536057
 Transform:
   m_ObjectHideFlags: 0
@@ -2305,15 +2360,20 @@ MonoBehaviour:
   Desc:
     Name: 
     MaxRange: 0
+    MaxLives: 0
     ShiftDuration: 0
     AttackDuration: 0
     ReturnDuration: 0
+    DeathDuration: 0
   Range: 5
+  Lives: 0
   Team: 0
+  Manager: {fileID: 0}
   Cell: {fileID: 0}
   IsMoving: 0
   IsAttacking: 0
   IsReturning: 0
+  IsDying: 0
   Path: []
   Transition: 0
   PathIndex: 0
