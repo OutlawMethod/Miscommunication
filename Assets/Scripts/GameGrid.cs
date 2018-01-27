@@ -26,17 +26,34 @@ public class GameGrid : MonoBehaviour
     public int Last(int x, int team)
     {
         var y = team == 0 ? 0 : Height - 1;
-        var result = team == 0 ? Height : -1;
+        var result = team == 0 ? -1 : Height;
+        var isBlocked = false;
+        var unblockedResult = 0;
 
-        while (y >= 0 && y < Height - 1)
+        while (y >= 0 && y < Height)
         {
             if (Cells[x, y].Character != null)
             {
                 if (Cells[x, y].Character.Team != team)
-                    return result;
+                {
+                    if (isBlocked)
+                        return result;
+                    else
+                    {
+                        isBlocked = true;
+                        unblockedResult = y;
+                    }
+                }
+                else if (isBlocked)
+                    return unblockedResult;
                 else
                     result = y;
             }
+
+            if (team == 0)
+                y++;
+            else
+                y--;
         }
 
         return result;
