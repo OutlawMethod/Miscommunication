@@ -39,6 +39,7 @@ public class Manager : MonoBehaviour
     public CharacterPanel Panel;
     public CharacterDesc[] Descriptions;
     public CharacterSet[] Prefabs;
+    public HeartPanel Hearts;
 
     public List<Character> Characters = new List<Character>();
     public List<CharacterPanel> Panels = new List<CharacterPanel>();
@@ -181,13 +182,17 @@ public class Manager : MonoBehaviour
                 {
                     canGive = true;
                     Grid.Point(Current.Cell, Grid.Hover);
+                    Grid.Hover.Character.Hearts.Target(4);
                 }
                 else if (Grid.HasPath(Grid.Hover))
                 {
                     canGive = true;
 
                     if (Grid.Hover.Status == CellStatus.enemy)
+                    {
                         Grid.Point(Grid.Hover.AttackOrigin(Current), Grid.Hover);
+                        Grid.Hover.Character.Hearts.Target(4);
+                    }
                 }
 
                 if (canGive && Input.GetMouseButtonDown(0))
@@ -227,6 +232,17 @@ public class Manager : MonoBehaviour
         character.Manager = this;
 
         Characters.Add(character);
+
+        instance = GameObject.Instantiate(Hearts.gameObject);
+        instance.transform.parent = Canvas.transform;
+        instance.SetActive(true);
+
+        var hearts = instance.GetComponent<HeartPanel>();
+        hearts.Manager = this;
+        hearts.Character = character;
+        hearts.Setup();
+
+        character.Hearts = hearts;
     }
 
     private void updateNextOrder()

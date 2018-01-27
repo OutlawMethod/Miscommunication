@@ -15,6 +15,7 @@ public class Character : MonoBehaviour
     public int Team;
     public Manager Manager;
     public Cell Cell;
+    public HeartPanel Hearts;
 
     public bool IsMoving;
     public bool IsAttacking;
