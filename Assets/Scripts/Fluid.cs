@@ -15,6 +15,16 @@ public class Fluid
         return Mathf.Lerp(a, b, Get(t, mode));
     }
 
+    public static float LerpAngle(float a, float b, float t, AnimationMode mode)
+    {
+        return Mathf.LerpAngle(a, b, Get(t, mode));
+    }
+
+    public static Quaternion Lerp(Quaternion a, Quaternion b, float t, AnimationMode mode)
+    {
+        return Quaternion.Lerp(a, b, Get(t, mode));
+    }
+
     public static Vector3 Lerp(Vector3 a, Vector3 b, float t, AnimationMode mode)
     {
         return Vector3.Lerp(a, b, Get(t, mode));

@@ -198,7 +198,7 @@ public class Character : MonoBehaviour
                 IsTurning = false;
             }
 
-            transform.eulerAngles = new Vector3(transform.eulerAngles.x, Mathf.LerpAngle(TurnOrigin, TurnTarget, TurnTransition), transform.eulerAngles.z);
+            transform.eulerAngles = new Vector3(transform.eulerAngles.x, Fluid.LerpAngle(TurnOrigin, TurnTarget, TurnTransition, AnimationMode.easeInOut), transform.eulerAngles.z);
         }
         else if (IsMoving)
         {

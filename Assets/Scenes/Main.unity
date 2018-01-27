@@ -2903,7 +2903,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Manager: {fileID: 1924536056}
-  Duration: 0.5
+  Duration: 0.7
   Team0: {fileID: 961456962}
   Team1: {fileID: 711550840}
   Transition: 0

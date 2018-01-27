@@ -5,7 +5,7 @@ public class GameCamera : MonoBehaviour
 {
     public Manager Manager;
 
-    public float Duration = 0.5f;
+    public float SwitchDuration = 0.7f;
 
     public Transform Team0;
     public Transform Team1;
@@ -34,17 +34,17 @@ public class GameCamera : MonoBehaviour
             TransitionOriginRotation = transform.rotation;
         }
 
-        Transition = Mathf.Clamp01(Transition + Time.deltaTime / Duration);
+        Transition = Mathf.Clamp01(Transition + Time.deltaTime / SwitchDuration);
 
         if (Team == 0)
         {
-            transform.position = Vector3.Lerp(TransitionOriginPosition, Team0.position, Transition);
-            transform.rotation = Quaternion.Lerp(TransitionOriginRotation, Team0.rotation, Transition);
+            transform.position = Fluid.Lerp(TransitionOriginPosition, Team0.position, Transition, AnimationMode.easeInOut);
+            transform.rotation = Fluid.Lerp(TransitionOriginRotation, Team0.rotation, Transition, AnimationMode.easeInOut);
         }
         else if (Team == 1)
         {
-            transform.position = Vector3.Lerp(TransitionOriginPosition, Team1.position, Transition);
-            transform.rotation = Quaternion.Lerp(TransitionOriginRotation, Team1.rotation, Transition);
+            transform.position = Fluid.Lerp(TransitionOriginPosition, Team1.position, Transition, AnimationMode.easeInOut);
+            transform.rotation = Fluid.Lerp(TransitionOriginRotation, Team1.rotation, Transition, AnimationMode.easeInOut);
         }
     }
 }
