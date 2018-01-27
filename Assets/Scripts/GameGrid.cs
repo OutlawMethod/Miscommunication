@@ -14,7 +14,7 @@ public class GameGrid : MonoBehaviour
     public Cell Hover;
 
     public int HoverTeam = -1;
-    public int HoverRange;
+    public Character Attacker;
 
     public List<Cell> Unvisited = new List<Cell>();
 
@@ -57,7 +57,7 @@ public class GameGrid : MonoBehaviour
         var path = new List<Cell>();
         path.Add(target);
 
-        var node = target.AttackOrigin(HoverRange);
+        var node = target.AttackOrigin(Attacker);
 
         while (node.Origin != null)
         {
@@ -94,7 +94,7 @@ public class GameGrid : MonoBehaviour
     public void FindPaths(Cell origin, int range)
     {
         Origin = origin;
-        HoverRange = range;
+        Attacker = origin.Character;
 
         for (int x = 0; x < Width; x++)
             for (int y = 0; y < Height; y++)

@@ -47,28 +47,28 @@ public class Cell : MonoBehaviour
         return Grid.Cells[x, y];
     }
 
-    private void considerAttackOrigin(Cell cell, int range)
+    private void considerAttackOrigin(Cell cell, Character attacker)
     {
         if (cell == null)
             return;
 
-        if (!Grid.HasPath(cell))
+        if (!Grid.HasPath(cell) && cell.Character != attacker)
             return;
 
-        if (cell.Value + 1 >= range)
+        if (cell.Value >= attacker.Range)
             return;
 
         Temp.Add(cell);
     }
 
-    public Cell AttackOrigin(int range)
+    public Cell AttackOrigin(Character attacker)
     {
         Temp.Clear();
 
-        considerAttackOrigin(Neighbour(-1, 0), range);
-        considerAttackOrigin(Neighbour(1, 0), range);
-        considerAttackOrigin(Neighbour(0, -1), range);
-        considerAttackOrigin(Neighbour(0, 1), range);
+        considerAttackOrigin(Neighbour(-1, 0), attacker);
+        considerAttackOrigin(Neighbour(1, 0), attacker);
+        considerAttackOrigin(Neighbour(0, -1), attacker);
+        considerAttackOrigin(Neighbour(0, 1), attacker);
 
         if (Temp.Count == 0)
             return Origin;
@@ -145,7 +145,7 @@ public class Cell : MonoBehaviour
 
                     if (Grid.Hover != null && Grid.Hover.Status == CellStatus.enemy)
                     {
-                        attackOrigin = Grid.Hover.AttackOrigin(Grid.HoverRange);
+                        attackOrigin = Grid.Hover.AttackOrigin(Grid.Attacker);
                         node = attackOrigin;
                     }
 
