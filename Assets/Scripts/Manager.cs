@@ -186,7 +186,7 @@ public class Manager : MonoBehaviour
         if (Grid.HasPath(target))
         {
             if (target.Character != null)
-                character.Attack(Grid.Path(target));
+                character.Attack(Grid.AttackPath(target));
             else
                 character.Move(Grid.Path(target));
         }
