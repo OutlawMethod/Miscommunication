@@ -908,11 +908,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Prefab: {fileID: 922597505}
   Width: 7
-  Height: 10
+  Height: 5
   Spacing: 1.2
   Origin: {fileID: 0}
   Hover: {fileID: 0}
   HoverTeam: -1
+  HoverRange: 0
   Unvisited: []
 --- !u!4 &521800567
 Transform:
@@ -1130,6 +1131,7 @@ MonoBehaviour:
   Origin: {fileID: 0}
   Value: 0
   Visited: 0
+  Temp: []
 --- !u!65 &922597506
 BoxCollider:
   m_ObjectHideFlags: 0
