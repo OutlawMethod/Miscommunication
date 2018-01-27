@@ -193,7 +193,12 @@ public class Manager : MonoBehaviour
         if (Grid.HasPath(target))
         {
             if (target.Character != null)
-                character.Attack(Grid.AttackPath(target));
+            {
+                if (target.IsInAttackRange(character))
+                    character.Attack(new Cell[] { target });
+                else
+                    character.Attack(Grid.AttackPath(target));
+            }
             else
                 character.Move(Grid.Path(target));
         }

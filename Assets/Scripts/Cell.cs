@@ -71,6 +71,9 @@ public class Cell : MonoBehaviour
         if (attacker.Cell.Y < Y) y = -1;
         if (attacker.Cell.Y > Y) y = 1;
 
+        if (x != 0 && y != 0)
+            return false;
+
         var node = this;
         var value = 0;
 
@@ -79,7 +82,7 @@ public class Cell : MonoBehaviour
             if (node == attacker.Cell)
                 return true;
 
-            if (value >= attacker.Desc.AttackRange)
+            if (value >= attacker.Desc.AttackRange || (node != this && node.Character != null && node.Character != attacker))
                 return false;
 
             node = node.Neighbour(x, y);

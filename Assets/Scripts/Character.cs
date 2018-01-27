@@ -162,14 +162,14 @@ public class Character : MonoBehaviour
 
             if (Transition >= 1)
             {
-                var target = Path[Path.Length - 1].Character;
+                var enemy = Path[Path.Length - 1].Character;
 
-                if (target != null)
+                if (enemy != null)
                 {
-                    target.Lives -= 4;
+                    enemy.Lives -= 4;
 
-                    if (target.Lives <= 0)
-                        target.Die();
+                    if (enemy.Lives <= 0)
+                        enemy.Die();
                 }
 
                 IsAttacking = false;
@@ -178,7 +178,14 @@ public class Character : MonoBehaviour
                 TransitionOrigin = transform.position;
             }
 
-            transform.position = Vector3.Lerp(TransitionOrigin, Path[Path.Length - 1].transform.position, Transition);
+            var target = Path[Path.Length - 1];
+
+            if (target.X > Cell.X + 1) target = Manager.Grid.Cells[Cell.X + 1, Cell.Y];
+            if (target.X < Cell.X - 1) target = Manager.Grid.Cells[Cell.X - 1, Cell.Y];
+            if (target.Y > Cell.Y + 1) target = Manager.Grid.Cells[Cell.X, Cell.Y + 1];
+            if (target.Y < Cell.Y - 1) target = Manager.Grid.Cells[Cell.X, Cell.Y - 1];
+
+            transform.position = Vector3.Lerp(TransitionOrigin, target.transform.position, Transition);
         }
         else if (IsReturning)
         {
