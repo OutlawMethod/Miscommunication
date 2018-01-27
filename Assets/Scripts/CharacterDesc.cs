@@ -13,4 +13,5 @@ public struct CharacterDesc
     public float ReturnDuration;
     public float DeathDuration;
     public float TurnDuration;
+    public string[] Rivals;
 }

@@ -70,10 +70,10 @@ public class Manager : MonoBehaviour
         Characters.Clear();
         Panels.Clear();
 
-        for (int i = 0; i < 2; i++)
+        for (int i = 0; i < Descriptions.Length; i++)
         {
             placeCharacter(i, i + 1, 0, 0);
-            placeCharacter(i, 2 - i, Grid.Height - 1, 1);
+            placeCharacter(i, Descriptions.Length - i, Grid.Height - 1, 1);
         }
 
         Grid.ClearStatus();
@@ -205,7 +205,7 @@ public class Manager : MonoBehaviour
                 {
                     canGive = true;
                     Grid.Point(Current.Cell, Grid.Hover);
-                    Grid.Hover.Character.Hearts.Target(4);
+                    Grid.Hover.Character.Hearts.Target(Current.IsRivalsWith(Grid.Hover.Character) ? 4 : 2);
                 }
                 else if (Grid.HasPath(Grid.Hover))
                 {
@@ -214,7 +214,7 @@ public class Manager : MonoBehaviour
                     if (Grid.Hover.Status == CellStatus.enemy)
                     {
                         Grid.Point(Grid.Hover.AttackOrigin(Current), Grid.Hover);
-                        Grid.Hover.Character.Hearts.Target(4);
+                        Grid.Hover.Character.Hearts.Target(Current.IsRivalsWith(Grid.Hover.Character) ? 4 : 2);
                     }
                 }
 

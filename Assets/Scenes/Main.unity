@@ -651,6 +651,7 @@ MonoBehaviour:
     ReturnDuration: 0
     DeathDuration: 0
     TurnDuration: 0
+    Rivals: []
   Range: 0
   Lives: 0
   Team: 0
@@ -1238,6 +1239,7 @@ MonoBehaviour:
     ReturnDuration: 0
     DeathDuration: 0
     TurnDuration: 0
+    Rivals: []
   Range: 0
   Lives: 0
   Team: 0
@@ -3338,6 +3340,7 @@ MonoBehaviour:
     ReturnDuration: 0
     DeathDuration: 0
     TurnDuration: 0
+    Rivals: []
   Range: 5
   Lives: 0
   Team: 0
@@ -6754,8 +6757,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Prefab: {fileID: 1800577274}
-  Width: 5
-  Height: 5
+  Width: 7
+  Height: 10
   Spacing: 1
   Origin: {fileID: 0}
   Hover: {fileID: 0}
@@ -7593,6 +7596,7 @@ MonoBehaviour:
     ReturnDuration: 0
     DeathDuration: 0
     TurnDuration: 0
+    Rivals: []
   Range: 5
   Lives: 0
   Team: 0
@@ -9195,6 +9199,7 @@ MonoBehaviour:
     ReturnDuration: 0
     DeathDuration: 0
     TurnDuration: 0
+    Rivals: []
   Range: 0
   Lives: 0
   Team: 0
@@ -11618,6 +11623,7 @@ MonoBehaviour:
     ReturnDuration: 0
     DeathDuration: 0
     TurnDuration: 0
+    Rivals: []
   Range: 5
   Lives: 0
   Team: 0
@@ -14013,6 +14019,7 @@ MonoBehaviour:
     ReturnDuration: 0
     DeathDuration: 0
     TurnDuration: 0
+    Rivals: []
   Range: 0
   Lives: 0
   Team: 0
@@ -23297,6 +23304,7 @@ MonoBehaviour:
     ReturnDuration: 0
     DeathDuration: 0
     TurnDuration: 0
+    Rivals: []
   Range: 5
   Lives: 0
   Team: 0
@@ -25277,6 +25285,7 @@ MonoBehaviour:
     ReturnDuration: 0
     DeathDuration: 0
     TurnDuration: 0
+    Rivals: []
   Range: 5
   Lives: 0
   Team: 0
@@ -25424,6 +25433,9 @@ MonoBehaviour:
     ReturnDuration: 0.4
     DeathDuration: 0.5
     TurnDuration: 0.2
+    Rivals:
+    - Cat
+    - Rabbits
   - Name: Fox
     MaxRange: 4
     MaxLives: 7
@@ -25433,6 +25445,9 @@ MonoBehaviour:
     ReturnDuration: 0.4
     DeathDuration: 0.5
     TurnDuration: 0.2
+    Rivals:
+    - Rabbits
+    - Racoon
   - Name: Cat
     MaxRange: 3
     MaxLives: 9
@@ -25442,6 +25457,9 @@ MonoBehaviour:
     ReturnDuration: 0.4
     DeathDuration: 0.5
     TurnDuration: 0.2
+    Rivals:
+    - Dog
+    - Racoon
   - Name: Rabbits
     MaxRange: 5
     MaxLives: 5
@@ -25451,6 +25469,9 @@ MonoBehaviour:
     ReturnDuration: 0.4
     DeathDuration: 0.5
     TurnDuration: 0.2
+    Rivals:
+    - Fox
+    - Dog
   - Name: Racoon
     MaxRange: 4
     MaxLives: 7
@@ -25460,6 +25481,9 @@ MonoBehaviour:
     ReturnDuration: 0.4
     DeathDuration: 0.5
     TurnDuration: 0.2
+    Rivals:
+    - Fox
+    - Cat
   Prefabs:
   - Teams:
     - {fileID: 570108751}
@@ -26846,6 +26870,7 @@ MonoBehaviour:
     ReturnDuration: 0
     DeathDuration: 0
     TurnDuration: 0
+    Rivals: []
   Range: 5
   Lives: 0
   Team: 0

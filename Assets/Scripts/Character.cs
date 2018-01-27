@@ -51,11 +51,14 @@ public class Character : MonoBehaviour
                     if (cell.Character.Team != Team)
                         return 0;
                     else
-                        value -= 20;
+                        value -= IsRivalsWith(cell.Character) ? 40 : 20;
                 }
 
                 y += dir;
             }
+
+            if (value < 0)
+                return 0;
 
             return value;
         }
@@ -82,6 +85,15 @@ public class Character : MonoBehaviour
 
             return true;
         }
+    }
+
+    public bool IsRivalsWith(Character other)
+    {
+        foreach (var name in Desc.Rivals)
+            if (name == other.Desc.Name)
+                return true;
+
+        return false;
     }
 
     public void Die()
