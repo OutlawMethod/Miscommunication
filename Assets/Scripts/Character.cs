@@ -54,7 +54,7 @@ public class Character : MonoBehaviour
     {
         Range = 0;
         Path = path;
-        IsMoving = true;
+        IsMoving = path.Length > 1;
         IsAttacking = true;
         Transition = 0;
         PathIndex = 0;

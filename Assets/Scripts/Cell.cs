@@ -136,7 +136,14 @@ public class Cell : MonoBehaviour
         switch (Status)
         {
             case CellStatus.default_:
-                if (Grid.Hover != null && Grid.HoverTeam >= 0)
+                if (Grid.Attacker != null && Character != null && Grid.Attacker.Team != Character.Team && IsInAttackRange(Grid.Attacker))
+                {
+                    if (Grid.Hover == this)
+                        Material.color = Color.Lerp(Color.red, Color.white, 0.5f);
+                    else
+                        Material.color = Color.red;
+                }
+                else if (Grid.Hover != null && Grid.HoverTeam >= 0)
                 {
                     if (Grid.Hover == this && Character != null && Character.Team == Grid.HoverTeam)
                         Material.color = Color.yellow;

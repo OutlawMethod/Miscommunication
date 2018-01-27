@@ -173,32 +173,37 @@ public class Manager : MonoBehaviour
         }
         else
         {
-            if (Grid.Hover != null && Grid.HasPath(Grid.Hover))
+            if (Grid.Hover != null)
             {
-                if (Input.GetMouseButtonDown(0))
-                    giveCommand(Current, Grid.Hover);
-                else if (Grid.Hover.Status == CellStatus.enemy)
+                var canGive = false;
+
+                if (Grid.Hover.Character != null && Grid.Hover.Character.Team != Current.Team && Grid.Hover.IsInAttackRange(Current))
                 {
-                    if (Grid.Hover.IsInAttackRange(Current))
-                        Grid.Point(Current.Cell, Grid.Hover);
-                    else
+                    canGive = true;
+                    Grid.Point(Current.Cell, Grid.Hover);
+                }
+                else if (Grid.HasPath(Grid.Hover))
+                {
+                    canGive = true;
+
+                    if (Grid.Hover.Status == CellStatus.enemy)
                         Grid.Point(Grid.Hover.AttackOrigin(Current), Grid.Hover);
                 }
+
+                if (canGive && Input.GetMouseButtonDown(0))
+                    giveCommand(Current, Grid.Hover);
             }
         }
     }
 
     private void giveCommand(Character character, Cell target)
     {
-        if (Grid.HasPath(target))
+        if (target.Character != null && target.IsInAttackRange(character))
+            character.Attack(new Cell[] { target });
+        else if (Grid.HasPath(target))
         {
             if (target.Character != null)
-            {
-                if (target.IsInAttackRange(character))
-                    character.Attack(new Cell[] { target });
-                else
-                    character.Attack(Grid.AttackPath(target));
-            }
+                character.Attack(Grid.AttackPath(target));
             else
                 character.Move(Grid.Path(target));
         }
