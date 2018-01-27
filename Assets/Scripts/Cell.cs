@@ -146,7 +146,7 @@ public class Cell : MonoBehaviour
                     else
                         Material.color = Color.red;
                 }
-                else if (Grid.Hover != null && Grid.HoverTeam >= 0)
+                else if (Grid.Hover != null && Grid.HoverTeam >= 0 && Grid.Hover.Character != null)
                 {
                     var last = Grid.Last(X, Grid.HoverTeam);
 
