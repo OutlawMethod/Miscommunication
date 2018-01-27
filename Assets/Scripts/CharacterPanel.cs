@@ -7,6 +7,8 @@ public class CharacterPanel : MonoBehaviour
     public Text Title;
     public Image Gradient;
     public Text Control;
+    public Text Move;
+    public Text Range;
     public float Fade;
     public float FadeDuration = 0.3f;
 
@@ -15,7 +17,7 @@ public class CharacterPanel : MonoBehaviour
         var t = GetComponent<RectTransform>();
         t.anchoredPosition = new Vector2(-500 * (1 - Fade), t.anchoredPosition.y);
 
-        if (Character.Manager.Processing.Count == 0)
+        if (Character.Manager.Processing.Count == 0 && Character.Manager.NeedPanel)
         {
             var control = Character.Control;
             Control.text = control.ToString() + "%";
@@ -30,6 +32,8 @@ public class CharacterPanel : MonoBehaviour
     public void Fill()
     {
         Title.text = Character.Desc.Name;
+        Range.text = Character.Desc.AttackRange.ToString();
+        Move.text = Character.Desc.MaxRange.ToString();
         UpdateColors();
     }
 

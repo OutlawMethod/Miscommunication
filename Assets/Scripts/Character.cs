@@ -41,6 +41,7 @@ public class Character : MonoBehaviour
             var dir = Team == 0 ? -1 : 1;
             var value = 100;
             y += dir;
+            var current = this;
 
             while (y >= 0 && y < Manager.Grid.Height)
             {
@@ -51,7 +52,10 @@ public class Character : MonoBehaviour
                     if (cell.Character.Team != Team)
                         return 0;
                     else
-                        value -= IsRivalsWith(cell.Character) ? 40 : 20;
+                    {
+                        value -= current.IsRivalsWith(cell.Character) ? 40 : 20;
+                        current = cell.Character;
+                    }
                 }
 
                 y += dir;
@@ -175,7 +179,7 @@ public class Character : MonoBehaviour
                 IsDying = false;
             }
 
-            transform.position = Vector3.Lerp(TransitionOrigin, TransitionOrigin - Vector3.up * 1.5f, Transition);
+            transform.position = Fluid.Lerp(TransitionOrigin, TransitionOrigin - Vector3.up * 1.5f, Transition, AnimationMode.easeIn);
         }
         else if (IsStaying)
         {
@@ -217,7 +221,7 @@ public class Character : MonoBehaviour
             }
 
             if (PathIndex < Path.Length)
-                transform.position = Vector3.Lerp(TransitionOrigin, Path[PathIndex].transform.position, Transition);
+                transform.position = Fluid.Lerp(TransitionOrigin, Path[PathIndex].transform.position, Transition, AnimationMode.easeInOut);
 
             if (IsAttacking)
             {
@@ -267,7 +271,7 @@ public class Character : MonoBehaviour
             if (target.Y > Cell.Y + 1) target = Manager.Grid.Cells[Cell.X, Cell.Y + 1];
             if (target.Y < Cell.Y - 1) target = Manager.Grid.Cells[Cell.X, Cell.Y - 1];
 
-            transform.position = Vector3.Lerp(TransitionOrigin, target.transform.position, Transition);
+            transform.position = Fluid.Lerp(TransitionOrigin, target.transform.position, Transition, AnimationMode.easeIn);
         }
         else if (IsReturning)
         {
@@ -276,7 +280,7 @@ public class Character : MonoBehaviour
             if (Transition >= 1)
                 IsReturning = false;
 
-            transform.position = Vector3.Lerp(TransitionOrigin, Cell.transform.position, Transition);
+            transform.position = Fluid.Lerp(TransitionOrigin, Cell.transform.position, Transition, AnimationMode.easeOut);
         }
     }
 }

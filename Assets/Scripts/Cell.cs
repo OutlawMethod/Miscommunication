@@ -174,7 +174,34 @@ public class Cell : MonoBehaviour
                             }
 
                             if (inPlace)
-                                Material.color = Color.blue;
+                            {
+                                var dir = Grid.HoverTeam == 0 ? 1 : -1;
+                                var y = Y + dir;
+
+                                var control = Grid.Hover.Character.Control;
+
+                                while (y >= 0 && y < Grid.Height)
+                                {
+                                    if (Grid.Cells[X, y].Character != null)
+                                    {
+                                        control = Grid.Cells[X, y].Character.Control;
+                                        break;
+                                    }
+
+                                    y += dir;
+                                }
+
+                                if (control > 80)
+                                    Material.color = Color.green;
+                                else if (control > 60)
+                                    Material.color = Color.Lerp(Color.green, Color.red, 0.5f);
+                                else if (control > 40)
+                                    Material.color = Color.red;
+                                else if (control > 20)
+                                    Material.color = Color.Lerp(Color.red, Color.black, 0.5f);
+                                else
+                                    Material.color = Color.black;
+                            }
                             else
                                 Material.color = Color.white;
                         }
