@@ -69,12 +69,27 @@ public class Cell : MonoBehaviour
                 break;
 
             case CellStatus.available:
-                if (Grid.Hover == this)
-                    Material.color = Color.Lerp(Color.green, Color.white, 0.5f);
-                else if (Grid.Hover != null && Grid.Hover.Origin == this)
-                    Material.color = Color.Lerp(Color.green, Color.white, 0.25f);
-                else
-                    Material.color = Color.green;
+                {
+                    var inPath = false;
+
+                    var node = Grid.Hover;
+
+                    while (node != null)
+                    {
+                        if (node == this)
+                        {
+                            inPath = true;
+                            break;
+                        }
+                        else
+                            node = node.Origin;
+                    }
+
+                    if (inPath)
+                        Material.color = Color.yellow;
+                    else
+                        Material.color = Color.green;
+                }
                 break;
 
             case CellStatus.enemy:
