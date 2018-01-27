@@ -35,7 +35,7 @@ public class HeartPanel : MonoBehaviour
     private void add(float x, float y)
     {
         var instance = GameObject.Instantiate(Prefab);
-        instance.transform.parent = transform;
+        instance.transform.SetParent(transform);
         instance.GetComponent<RectTransform>().anchoredPosition = new Vector2(x * Spacing, y * Spacing);
         instance.SetActive(true);
 
@@ -53,9 +53,7 @@ public class HeartPanel : MonoBehaviour
             Hearts[i].Removed = Character.Lives <= i;
 
         var rect = GetComponent<RectTransform>();
-        var screen = Camera.main.WorldToScreenPoint(Character.transform.position);
-        screen.y += 50;
-
-        rect.position = screen;
+        rect.position = Camera.main.WorldToScreenPoint(Character.transform.position);
+        rect.anchoredPosition += new Vector2(0, 100);
     }
 }

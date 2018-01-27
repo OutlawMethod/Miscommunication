@@ -40,6 +40,7 @@ public class Manager : MonoBehaviour
     public CharacterDesc[] Descriptions;
     public CharacterSet[] Prefabs;
     public HeartPanel Hearts;
+    public HeartCount HeartCount;
 
     public List<Character> Characters = new List<Character>();
     public List<CharacterPanel> Panels = new List<CharacterPanel>();
@@ -234,7 +235,7 @@ public class Manager : MonoBehaviour
         Characters.Add(character);
 
         instance = GameObject.Instantiate(Hearts.gameObject);
-        instance.transform.parent = Canvas.transform;
+        instance.transform.SetParent(Canvas.transform);
         instance.SetActive(true);
 
         var hearts = instance.GetComponent<HeartPanel>();
@@ -243,6 +244,15 @@ public class Manager : MonoBehaviour
         hearts.Setup();
 
         character.Hearts = hearts;
+
+        instance = GameObject.Instantiate(HeartCount.gameObject);
+        instance.transform.SetParent(Canvas.transform);
+        instance.transform.localScale = new Vector3(1, 1, 1);
+        instance.SetActive(true);
+
+        var count = instance.GetComponent<HeartCount>();
+        count.Manager = this;
+        count.Character = character;
     }
 
     private void updateNextOrder()

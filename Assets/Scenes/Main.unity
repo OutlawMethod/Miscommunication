@@ -357,7 +357,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 509.91003, y: -160.09}
-  m_SizeDelta: {x: 20, y: 20}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &73067404
 CanvasRenderer:
@@ -373,7 +373,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 73067402}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d20dc9e7ea4db9c4db0aa2b449d3d950, type: 3}
+  m_Script: {fileID: 11500000, guid: 31359f3d5dd9b9949949fbb58668252e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Prefab: {fileID: 1559286655}
@@ -961,8 +961,9 @@ GameObject:
   m_Component:
   - component: {fileID: 507593726}
   - component: {fileID: 507593728}
+  - component: {fileID: 507593727}
   m_Layer: 5
-  m_Name: HeartCountPrefab
+  m_Name: HeartCount
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -986,8 +987,22 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 509.91003, y: -160.09}
-  m_SizeDelta: {x: 20, y: 20}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &507593727
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 507593725}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d20dc9e7ea4db9c4db0aa2b449d3d950, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Count: {fileID: 1929407191}
+  Character: {fileID: 0}
+  Manager: {fileID: 0}
 --- !u!222 &507593728
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1434,8 +1449,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 10, y: 10}
-  m_SizeDelta: {x: 48, y: 48}
+  m_AnchoredPosition: {x: -20.8, y: 0.8}
+  m_SizeDelta: {x: 32, y: 32}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &892390339
 MonoBehaviour:
@@ -2130,7 +2145,7 @@ GameObject:
   - component: {fileID: 1559286657}
   - component: {fileID: 1559286659}
   m_Layer: 5
-  m_Name: HeartPrefab
+  m_Name: Heart
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2598,6 +2613,7 @@ MonoBehaviour:
     - {fileID: 2015340823}
     - {fileID: 1798158860}
   Hearts: {fileID: 73067405}
+  HeartCount: {fileID: 507593727}
   Characters: []
   Panels: []
   Team: 0
@@ -2649,8 +2665,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 113, y: 4}
-  m_SizeDelta: {x: 160, y: 100}
+  m_AnchoredPosition: {x: 26.8, y: 3}
+  m_SizeDelta: {x: 50, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1929407191
 MonoBehaviour:
@@ -2673,7 +2689,7 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 52
+    m_FontSize: 36
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 2
