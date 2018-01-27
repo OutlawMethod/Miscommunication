@@ -910,7 +910,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Prefab: {fileID: 922597505}
   Width: 7
-  Height: 5
+  Height: 10
   Spacing: 1.2
   Origin: {fileID: 0}
   Hover: {fileID: 0}
