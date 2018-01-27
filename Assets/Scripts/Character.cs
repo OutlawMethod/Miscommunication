@@ -202,26 +202,30 @@ public class Character : MonoBehaviour
         }
         else if (IsMoving)
         {
-            Transition += Time.deltaTime / Desc.ShiftDuration;
+            var segment = Cell.SegmentLength(Path, PathIndex);
 
-            while (Transition >= 1 && PathIndex < Path.Length)
+            Transition += Time.deltaTime / (segment * Desc.ShiftDuration);
+
+            while (Transition >= 1 && PathIndex + segment - 1 < Path.Length)
             {
                 if (Cell != null)
                     Cell.Character = null;
 
-                Cell = Path[PathIndex];
+                Cell = Path[PathIndex + segment - 1];
                 Cell.Character = this;
 
                 Transition -= 1;
                 TransitionOrigin = transform.position;
-                PathIndex++;
+                PathIndex += segment;
 
                 if (PathIndex < Path.Length)
                     prepareToMoveTo(Path[PathIndex]);
+
+                segment = 1;
             }
 
-            if (PathIndex < Path.Length)
-                transform.position = Fluid.Lerp(TransitionOrigin, Path[PathIndex].transform.position, Transition, AnimationMode.easeInOut);
+            if (PathIndex + segment - 1 < Path.Length)
+                transform.position = Fluid.Lerp(TransitionOrigin, Path[PathIndex + segment - 1].transform.position, Transition, AnimationMode.easeInOut);
 
             if (IsAttacking)
             {

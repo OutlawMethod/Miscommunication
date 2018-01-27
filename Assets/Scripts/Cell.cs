@@ -35,6 +35,32 @@ public class Cell : MonoBehaviour
         renderer.material = Material;
     }
 
+    public int SegmentLength(Cell[] Path, int index)
+    {
+        if (index >= Path.Length)
+            return 0;
+
+        if (Path[index].X > X) return 1 + Path[index].SegmentLength(Path, index + 1, 1);
+        if (Path[index].X < X) return 1 + Path[index].SegmentLength(Path, index + 1, 2);
+        if (Path[index].Y > Y) return 1 + Path[index].SegmentLength(Path, index + 1, 3);
+        if (Path[index].Y < Y) return 1 + Path[index].SegmentLength(Path, index + 1, 4);
+
+        return 0;
+    }
+
+    public int SegmentLength(Cell[] Path, int index, int direction)
+    {
+        if (index >= Path.Length)
+            return 0;
+
+        if (direction == 1 && Path[index].X > X) return 1 + Path[index].SegmentLength(Path, index + 1, 1);
+        if (direction == 2 && Path[index].X < X) return 1 + Path[index].SegmentLength(Path, index + 1, 2);
+        if (direction == 3 && Path[index].Y > Y) return 1 + Path[index].SegmentLength(Path, index + 1, 3);
+        if (direction == 4 && Path[index].Y < Y) return 1 + Path[index].SegmentLength(Path, index + 1, 4);
+
+        return 0;
+    }
+
     public Cell Neighbour(int x, int y)
     {
         x += X;
