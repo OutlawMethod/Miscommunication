@@ -404,6 +404,7 @@ MonoBehaviour:
     Name: 
     MaxRange: 0
     MaxLives: 0
+    AttackRange: 0
     ShiftDuration: 0
     AttackDuration: 0
     ReturnDuration: 0
@@ -505,6 +506,7 @@ MonoBehaviour:
     Name: 
     MaxRange: 0
     MaxLives: 0
+    AttackRange: 0
     ShiftDuration: 0
     AttackDuration: 0
     ReturnDuration: 0
@@ -973,6 +975,7 @@ MonoBehaviour:
     Name: 
     MaxRange: 0
     MaxLives: 0
+    AttackRange: 0
     ShiftDuration: 0
     AttackDuration: 0
     ReturnDuration: 0
@@ -1063,6 +1066,7 @@ MonoBehaviour:
     Name: 
     MaxRange: 0
     MaxLives: 0
+    AttackRange: 0
     ShiftDuration: 0
     AttackDuration: 0
     ReturnDuration: 0
@@ -1523,6 +1527,7 @@ MonoBehaviour:
     Name: 
     MaxRange: 0
     MaxLives: 0
+    AttackRange: 0
     ShiftDuration: 0
     AttackDuration: 0
     ReturnDuration: 0
@@ -1585,6 +1590,7 @@ MonoBehaviour:
     Name: 
     MaxRange: 0
     MaxLives: 0
+    AttackRange: 0
     ShiftDuration: 0
     AttackDuration: 0
     ReturnDuration: 0
@@ -2006,6 +2012,7 @@ MonoBehaviour:
     Name: 
     MaxRange: 0
     MaxLives: 0
+    AttackRange: 0
     ShiftDuration: 0
     AttackDuration: 0
     ReturnDuration: 0
@@ -2068,6 +2075,7 @@ MonoBehaviour:
     Name: 
     MaxRange: 0
     MaxLives: 0
+    AttackRange: 0
     ShiftDuration: 0
     AttackDuration: 0
     ReturnDuration: 0
@@ -2201,6 +2209,7 @@ MonoBehaviour:
     Name: 
     MaxRange: 0
     MaxLives: 0
+    AttackRange: 0
     ShiftDuration: 0
     AttackDuration: 0
     ReturnDuration: 0
@@ -2252,6 +2261,7 @@ MonoBehaviour:
   - Name: Dog
     MaxRange: 4
     MaxLives: 7
+    AttackRange: 1
     ShiftDuration: 0.2
     AttackDuration: 0.1
     ReturnDuration: 0.4
@@ -2259,6 +2269,7 @@ MonoBehaviour:
   - Name: Fox
     MaxRange: 4
     MaxLives: 7
+    AttackRange: 1
     ShiftDuration: 0.2
     AttackDuration: 0.1
     ReturnDuration: 0.4
@@ -2266,6 +2277,7 @@ MonoBehaviour:
   - Name: Cat
     MaxRange: 3
     MaxLives: 9
+    AttackRange: 2
     ShiftDuration: 0.3
     AttackDuration: 0.2
     ReturnDuration: 0.4
@@ -2273,6 +2285,7 @@ MonoBehaviour:
   - Name: Rabbits
     MaxRange: 5
     MaxLives: 5
+    AttackRange: 1
     ShiftDuration: 0.2
     AttackDuration: 0.1
     ReturnDuration: 0.4
@@ -2280,6 +2293,7 @@ MonoBehaviour:
   - Name: Racoon
     MaxRange: 4
     MaxLives: 7
+    AttackRange: 3
     ShiftDuration: 0.2
     AttackDuration: 0.1
     ReturnDuration: 0.4
@@ -2363,6 +2377,7 @@ MonoBehaviour:
     Name: 
     MaxRange: 0
     MaxLives: 0
+    AttackRange: 0
     ShiftDuration: 0
     AttackDuration: 0
     ReturnDuration: 0
