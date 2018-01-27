@@ -214,6 +214,8 @@ public class Manager : MonoBehaviour
             else
                 character.Move(Grid.Path(target));
         }
+
+        Grid.ClearStatus();
     }
 
     private void placeCharacter(int type, int x, int y, int team)
