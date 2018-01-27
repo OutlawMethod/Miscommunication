@@ -35,7 +35,7 @@ public class HeartPanel : MonoBehaviour
     {
         var instance = GameObject.Instantiate(Prefab);
         instance.transform.parent = transform;
-        instance.GetComponent<RectTransform>().anchoredPosition = new Vector2(x * 24, y * 24);
+        instance.GetComponent<RectTransform>().anchoredPosition = new Vector2(x * 20, y * 20);
         instance.SetActive(true);
 
         Hearts.Add(instance.GetComponent<Heart>());
