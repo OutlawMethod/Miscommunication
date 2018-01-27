@@ -12,7 +12,7 @@ public class Manager : MonoBehaviour
 {
     public bool CanSkip
     {
-        get { return Processing.Count == 0 && Current != null; }
+        get { return Processing.Count == 0; }
     }
 
     public bool NeedPanel
@@ -55,6 +55,31 @@ public class Manager : MonoBehaviour
     {
         if (!Processing.Contains(character))
             Processing.Add(character);
+    }
+
+    public int GetControl(Character character)
+    {
+        var y = character.Cell.Y;
+        var dir = character.Team == 0 ? -1 : 1;
+        var value = 100;
+        y += dir;
+
+        while (y >= 0 && y < Grid.Height)
+        {
+            var cell = Grid.Cells[character.Cell.X, y];
+
+            if (cell.Character != null)
+            {
+                if (cell.Character.Team != character.Team)
+                    return 0;
+                else
+                    value -= 20;
+            }
+
+            y += dir;
+        }
+
+        return value;
     }
 
     private void Awake()
@@ -111,7 +136,7 @@ public class Manager : MonoBehaviour
         instance.SetParent(Canvas.transform);
         var rect = instance.GetComponent<RectTransform>();
         rect.anchoredPosition = new Vector2(0, 0);
-        rect.sizeDelta = new Vector2(500, 0);
+        rect.sizeDelta = new Vector2(1000, 0);
         instance.transform.localScale = new Vector3(1, 1, 1);
         instance.gameObject.SetActive(true);
 
