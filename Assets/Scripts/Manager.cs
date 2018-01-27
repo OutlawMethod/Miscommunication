@@ -112,6 +112,7 @@ public class Manager : MonoBehaviour
         var rect = instance.GetComponent<RectTransform>();
         rect.anchoredPosition = new Vector2(0, 0);
         rect.sizeDelta = new Vector2(500, 0);
+        instance.transform.localScale = new Vector3(1, 1, 1);
         instance.gameObject.SetActive(true);
 
         var panel = instance.GetComponent<CharacterPanel>();
