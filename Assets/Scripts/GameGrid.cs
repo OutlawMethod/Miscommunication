@@ -229,6 +229,9 @@ public class GameGrid : MonoBehaviour
         if (cell.Character != null && character != null && cell.Character.Team == character.Team)
             return;
 
+        if (cell.Character != null && origin.Character != null && origin.Character != character)
+            return;
+
         var newValue = origin.Value + 1;
 
         if (newValue < cell.Value)

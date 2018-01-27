@@ -52,6 +52,9 @@ public class Cell : MonoBehaviour
         if (cell == null)
             return;
 
+        if (cell.Character != null && cell.Character != attacker)
+            return;
+
         if (!Grid.HasPath(cell) && cell.Character != attacker)
             return;
 
