@@ -12,7 +12,7 @@ public class Manager : MonoBehaviour
 {
     public bool CanSkip
     {
-        get { return !IsProcessing && Current != null; }
+        get { return Processing.Count == 0 && Current != null; }
     }
 
     public bool NeedPanel
@@ -46,7 +46,8 @@ public class Manager : MonoBehaviour
     public int Team = 0;
 
     public Character Current;
-    public bool IsProcessing;
+
+    public List<Character> Processing = new List<Character>();
 
     private void Awake()
     {
@@ -65,13 +66,22 @@ public class Manager : MonoBehaviour
     {
         Grid.HoverTeam = -1;
 
-        if (IsProcessing && Current.IsActing)
+        if (Processing.Count > 0)
         {
-            updatePanels();
-            return;
-        }
-        else if (IsProcessing)
+            foreach (var unit in Processing)
+                if (unit.IsActing)
+                {
+                    updatePanels();
+                    return;
+                }
+
+            Processing.Clear();
+
+            if (Current.Range <= 0)
+                Skip();
+
             updateNextOrder();
+        }
 
         updateInput();
         updatePanels();
@@ -161,7 +171,8 @@ public class Manager : MonoBehaviour
                 character.Move(Grid.Path(target));
         }
 
-        IsProcessing = true;
+        if (!Processing.Contains(character))
+            Processing.Add(character);
     }
 
     private void placeCharacter(int type, int x, int y, int team)
@@ -182,19 +193,11 @@ public class Manager : MonoBehaviour
 
     private void updateNextOrder()
     {
-        if (IsProcessing)
-        {
-            if (Current.Range <= 0)
-                Skip();
-        }
-
         if (Current != null)
         {
             Grid.FindPaths(Current.Cell, Current.Range);
             pushPanel(Current);
         }
-
-        IsProcessing = false;
     }
 
     public void Skip()

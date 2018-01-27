@@ -10,6 +10,7 @@ public class Character : MonoBehaviour
     public CharacterDesc Desc;
 
     public int Range;
+    public int Lives;
 
     public int Team;
     public Cell Cell;
