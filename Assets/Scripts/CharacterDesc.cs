@@ -8,6 +8,7 @@ public struct CharacterDesc
     public int MaxRange;
     public int MaxLives;
     public int AttackRange;
+    public bool InvertAttack;
     public float ShiftDuration;
     public float AttackDuration;
     public float ReturnDuration;

@@ -204,6 +204,9 @@ public class Character : MonoBehaviour
         {
             var segment = Cell.SegmentLength(Path, PathIndex);
 
+            if (IsAttacking && PathIndex + segment >= Path.Length)
+                segment--;
+
             Transition += Time.deltaTime / (segment * Desc.ShiftDuration);
 
             while (Transition >= 1 && PathIndex + segment - 1 < Path.Length)
@@ -275,7 +278,12 @@ public class Character : MonoBehaviour
             if (target.Y > Cell.Y + 1) target = Manager.Grid.Cells[Cell.X, Cell.Y + 1];
             if (target.Y < Cell.Y - 1) target = Manager.Grid.Cells[Cell.X, Cell.Y - 1];
 
-            transform.position = Fluid.Lerp(TransitionOrigin, target.transform.position, Transition, AnimationMode.easeIn);
+            var targetPosition = target.transform.position;
+
+            if (Desc.InvertAttack)
+                targetPosition = TransitionOrigin - (target.transform.position - TransitionOrigin);
+
+            transform.position = Fluid.Lerp(TransitionOrigin, targetPosition, Transition, AnimationMode.easeIn);
         }
         else if (IsReturning)
         {

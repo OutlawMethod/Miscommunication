@@ -646,6 +646,7 @@ MonoBehaviour:
     MaxRange: 0
     MaxLives: 0
     AttackRange: 0
+    InvertAttack: 0
     ShiftDuration: 0
     AttackDuration: 0
     ReturnDuration: 0
@@ -1234,6 +1235,7 @@ MonoBehaviour:
     MaxRange: 0
     MaxLives: 0
     AttackRange: 0
+    InvertAttack: 0
     ShiftDuration: 0
     AttackDuration: 0
     ReturnDuration: 0
@@ -2903,7 +2905,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Manager: {fileID: 1924536056}
-  Duration: 0.7
+  SwitchDuration: 0.7
   Team0: {fileID: 961456962}
   Team1: {fileID: 711550840}
   Transition: 0
@@ -3264,6 +3266,7 @@ MonoBehaviour:
     MaxRange: 0
     MaxLives: 0
     AttackRange: 0
+    InvertAttack: 0
     ShiftDuration: 0
     AttackDuration: 0
     ReturnDuration: 0
@@ -7609,6 +7612,7 @@ MonoBehaviour:
     MaxRange: 0
     MaxLives: 0
     AttackRange: 0
+    InvertAttack: 0
     ShiftDuration: 0
     AttackDuration: 0
     ReturnDuration: 0
@@ -7955,6 +7959,7 @@ MonoBehaviour:
     MaxRange: 0
     MaxLives: 0
     AttackRange: 0
+    InvertAttack: 0
     ShiftDuration: 0
     AttackDuration: 0
     ReturnDuration: 0
@@ -9398,6 +9403,7 @@ MonoBehaviour:
     MaxRange: 0
     MaxLives: 0
     AttackRange: 0
+    InvertAttack: 0
     ShiftDuration: 0
     AttackDuration: 0
     ReturnDuration: 0
@@ -13211,6 +13217,7 @@ MonoBehaviour:
     MaxRange: 0
     MaxLives: 0
     AttackRange: 0
+    InvertAttack: 0
     ShiftDuration: 0
     AttackDuration: 0
     ReturnDuration: 0
@@ -14383,6 +14390,7 @@ MonoBehaviour:
     MaxRange: 0
     MaxLives: 0
     AttackRange: 0
+    InvertAttack: 0
     ShiftDuration: 0
     AttackDuration: 0
     ReturnDuration: 0
@@ -23597,6 +23605,7 @@ MonoBehaviour:
     MaxRange: 0
     MaxLives: 0
     AttackRange: 0
+    InvertAttack: 0
     ShiftDuration: 0
     AttackDuration: 0
     ReturnDuration: 0
@@ -25654,6 +25663,7 @@ MonoBehaviour:
     MaxRange: 4
     MaxLives: 7
     AttackRange: 1
+    InvertAttack: 0
     ShiftDuration: 0.2
     AttackDuration: 0.1
     ReturnDuration: 0.4
@@ -25666,6 +25676,7 @@ MonoBehaviour:
     MaxRange: 4
     MaxLives: 7
     AttackRange: 1
+    InvertAttack: 0
     ShiftDuration: 0.2
     AttackDuration: 0.1
     ReturnDuration: 0.4
@@ -25678,6 +25689,7 @@ MonoBehaviour:
     MaxRange: 3
     MaxLives: 9
     AttackRange: 2
+    InvertAttack: 1
     ShiftDuration: 0.3
     AttackDuration: 0.2
     ReturnDuration: 0.4
@@ -25690,6 +25702,7 @@ MonoBehaviour:
     MaxRange: 5
     MaxLives: 5
     AttackRange: 1
+    InvertAttack: 0
     ShiftDuration: 0.2
     AttackDuration: 0.1
     ReturnDuration: 0.4
@@ -25702,6 +25715,7 @@ MonoBehaviour:
     MaxRange: 4
     MaxLives: 7
     AttackRange: 3
+    InvertAttack: 0
     ShiftDuration: 0.2
     AttackDuration: 0.1
     ReturnDuration: 0.4
@@ -27091,6 +27105,7 @@ MonoBehaviour:
     MaxRange: 0
     MaxLives: 0
     AttackRange: 0
+    InvertAttack: 0
     ShiftDuration: 0
     AttackDuration: 0
     ReturnDuration: 0
