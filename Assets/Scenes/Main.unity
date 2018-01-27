@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 1074806005}
-  m_IndirectSpecularColor: {r: 0.4494664, g: 0.4995355, b: 0.57568586, a: 1}
+  m_IndirectSpecularColor: {r: 0.44946122, g: 0.49953187, b: 0.57568765, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -6453,7 +6453,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d20dc9e7ea4db9c4db0aa2b449d3d950, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Heart: {fileID: 892390339}
   Count: {fileID: 1929407191}
+  Fade: 1
+  FadeDuration: 0.3
   Character: {fileID: 0}
   Manager: {fileID: 0}
 --- !u!222 &507593728
@@ -18049,7 +18052,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1535430314
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18506,11 +18509,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FallSpeed: 500
   BlinkDuration: 0.1
+  FadeDuration: 0.3
   Target: 0
   Removed: 0
+  Fading: 0
   Fall: 0
+  Fade: 1
   Blink: 0
   BlinkDirection: 1
+  Character: {fileID: 0}
 --- !u!4 &1563393253 stripped
 Transform:
   m_PrefabParentObject: {fileID: 400000, guid: ae63a4c9674639845a7f469659751c33, type: 3}

@@ -23,6 +23,25 @@ public class GameGrid : MonoBehaviour
 
     public bool IsPointing;
 
+    public int Last(int x, int team)
+    {
+        var y = team == 0 ? 0 : Height - 1;
+        var result = team == 0 ? Height : -1;
+
+        while (y >= 0 && y < Height - 1)
+        {
+            if (Cells[x, y].Character != null)
+            {
+                if (Cells[x, y].Character.Team != team)
+                    return result;
+                else
+                    result = y;
+            }
+        }
+
+        return result;
+    }
+
     public void Point(Cell origin, Cell target)
     {
         if (Arrow == null)

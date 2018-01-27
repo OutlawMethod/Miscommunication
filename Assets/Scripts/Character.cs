@@ -31,6 +31,29 @@ public class Character : MonoBehaviour
     public float TurnTarget;
     public float TurnTransition;
 
+    public bool IsAvailable
+    {
+        get
+        {
+            var y = Cell.Y;
+
+            while (y >= 0 && y < Manager.Grid.Height)
+            {
+                var cell = Manager.Grid.Cells[Cell.X, y];
+
+                if (cell.Character != null && cell.Character.Team != Team)
+                    return false;
+
+                if (Team == 0)
+                    y--;
+                else
+                    y++;
+            }
+
+            return true;
+        }
+    }
+
     public void Die()
     {
         IsDying = true;

@@ -27,7 +27,7 @@ public class HeartPanel : MonoBehaviour
     public void Target(int damage)
     {
         for (int i = 0; i < Character.Lives; i++)
-            Hearts[i].Target = i >= Hearts.Count - damage;
+            Hearts[i].Target = i >= Character.Lives - damage;
 
         IsTargeted = true;
     }
