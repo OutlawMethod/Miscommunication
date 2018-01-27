@@ -57,31 +57,6 @@ public class Manager : MonoBehaviour
             Processing.Add(character);
     }
 
-    public int GetControl(Character character)
-    {
-        var y = character.Cell.Y;
-        var dir = character.Team == 0 ? -1 : 1;
-        var value = 100;
-        y += dir;
-
-        while (y >= 0 && y < Grid.Height)
-        {
-            var cell = Grid.Cells[character.Cell.X, y];
-
-            if (cell.Character != null)
-            {
-                if (cell.Character.Team != character.Team)
-                    return 0;
-                else
-                    value -= 20;
-            }
-
-            y += dir;
-        }
-
-        return value;
-    }
-
     private void Awake()
     {
         Grid.Setup();
@@ -234,15 +209,20 @@ public class Manager : MonoBehaviour
 
     private void giveCommand(Character character, Cell target)
     {
-        if (target.Character != null && target.IsInAttackRange(character))
-            character.Attack(new Cell[] { target });
-        else if (Grid.HasPath(target))
+        if (UnityEngine.Random.Range(0, 100) <= character.Control)
         {
-            if (target.Character != null)
-                character.Attack(Grid.AttackPath(target));
-            else
-                character.Move(Grid.Path(target));
+            if (target.Character != null && target.IsInAttackRange(character))
+                character.Attack(new Cell[] { target });
+            else if (Grid.HasPath(target))
+            {
+                if (target.Character != null)
+                    character.Attack(Grid.AttackPath(target));
+                else
+                    character.Move(Grid.Path(target));
+            }
         }
+        else
+            character.Stay();
 
         Grid.ClearStatus();
     }

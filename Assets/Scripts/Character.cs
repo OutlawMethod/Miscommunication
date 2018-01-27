@@ -4,7 +4,7 @@ public class Character : MonoBehaviour
 {
     public bool IsActing
     {
-        get { return IsMoving || IsAttacking || IsReturning || IsDying || IsTurning; }
+        get { return IsMoving || IsAttacking || IsReturning || IsDying || IsTurning || IsStaying; }
     }
 
     public CharacterDesc Desc;
@@ -22,6 +22,7 @@ public class Character : MonoBehaviour
     public bool IsReturning;
     public bool IsDying;
     public bool IsTurning;
+    public bool IsStaying;
 
     public Cell[] Path;
     public float Transition;
@@ -30,6 +31,34 @@ public class Character : MonoBehaviour
     public float TurnOrigin;
     public float TurnTarget;
     public float TurnTransition;
+
+    public int Control
+    {
+        get
+        {
+            var y = Cell.Y;
+            var dir = Team == 0 ? -1 : 1;
+            var value = 100;
+            y += dir;
+
+            while (y >= 0 && y < Manager.Grid.Height)
+            {
+                var cell = Manager.Grid.Cells[Cell.X, y];
+
+                if (cell.Character != null)
+                {
+                    if (cell.Character.Team != Team)
+                        return 0;
+                    else
+                        value -= 20;
+                }
+
+                y += dir;
+            }
+
+            return value;
+        }
+    }
 
     public bool IsAvailable
     {
@@ -72,6 +101,15 @@ public class Character : MonoBehaviour
         TurnOrigin = current;
         TurnTarget = target;
         TurnTransition = 0;
+    }
+
+    public void Stay()
+    {
+        IsStaying = true;
+        Transition = 0;
+        TransitionOrigin = transform.position;
+        Range = 0;
+        Manager.Process(this);
     }
 
     public void Attack(Cell[] path)
@@ -125,6 +163,13 @@ public class Character : MonoBehaviour
             }
 
             transform.position = Vector3.Lerp(TransitionOrigin, TransitionOrigin - Vector3.up * 1.5f, Transition);
+        }
+        else if (IsStaying)
+        {
+            Transition += Time.deltaTime * 5;
+
+            if (Transition >= 1)
+                IsStaying = false;
         }
         else if (IsTurning)
         {

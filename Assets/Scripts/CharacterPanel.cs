@@ -17,11 +17,10 @@ public class CharacterPanel : MonoBehaviour
 
         if (Character.Manager.Processing.Count == 0)
         {
-            var control = Character.Manager.GetControl(Character);
+            var control = Character.Control;
             Control.text = control.ToString() + "%";
 
             var min = 20f;
-
             Control.color = Color.Lerp(Color.red, Color.white, Mathf.Clamp01((control / min) / (100f / min)));
         }
 
