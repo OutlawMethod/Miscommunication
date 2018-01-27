@@ -179,8 +179,10 @@ public class Manager : MonoBehaviour
                     giveCommand(Current, Grid.Hover);
                 else if (Grid.Hover.Status == CellStatus.enemy)
                 {
-                    var node = Grid.Hover.AttackOrigin(Current);
-                    Grid.Point(node, Grid.Hover);
+                    if (Grid.Hover.IsInAttackRange(Current))
+                        Grid.Point(Current.Cell, Grid.Hover);
+                    else
+                        Grid.Point(Grid.Hover.AttackOrigin(Current), Grid.Hover);
                 }
             }
         }

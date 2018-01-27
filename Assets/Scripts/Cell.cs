@@ -61,6 +61,34 @@ public class Cell : MonoBehaviour
         Temp.Add(cell);
     }
 
+    public bool IsInAttackRange(Character attacker)
+    {
+        int x = 0;
+        int y = 0;
+
+        if (attacker.Cell.X < X) x = -1;
+        if (attacker.Cell.X > X) x = 1;
+        if (attacker.Cell.Y < Y) y = -1;
+        if (attacker.Cell.Y > Y) y = 1;
+
+        var node = this;
+        var value = 0;
+
+        while (node != null)
+        {
+            if (node == attacker.Cell)
+                return true;
+
+            if (value >= attacker.Desc.AttackRange)
+                return false;
+
+            node = node.Neighbour(x, y);
+            value++;
+        }
+
+        return false;
+    }
+
     public Cell AttackOrigin(Character attacker)
     {
         Temp.Clear();
@@ -138,32 +166,39 @@ public class Cell : MonoBehaviour
 
             case CellStatus.available:
                 {
-                    var inPath = false;
-
-                    var node = Grid.Hover;
-                    Cell attackOrigin = null;
-
-                    if (Grid.Hover != null && Grid.Hover.Status == CellStatus.enemy)
+                    if (Grid.Hover != null && Grid.Hover.Status == CellStatus.enemy && Grid.Hover.IsInAttackRange(Grid.Attacker))
                     {
-                        attackOrigin = Grid.Hover.AttackOrigin(Grid.Attacker);
-                        node = attackOrigin;
-                    }
-
-                    while (node != null)
-                    {
-                        if (node == this)
-                        {
-                            inPath = true;
-                            break;
-                        }
-                        else
-                            node = node.Origin;
-                    }
-
-                    if (inPath)
-                        Material.color = Color.yellow;
-                    else
                         Material.color = Color.green;
+                    }
+                    else
+                    {
+                        var inPath = false;
+
+                        var node = Grid.Hover;
+                        Cell attackOrigin = null;
+
+                        if (Grid.Hover != null && Grid.Hover.Status == CellStatus.enemy)
+                        {
+                            attackOrigin = Grid.Hover.AttackOrigin(Grid.Attacker);
+                            node = attackOrigin;
+                        }
+
+                        while (node != null)
+                        {
+                            if (node == this)
+                            {
+                                inPath = true;
+                                break;
+                            }
+                            else
+                                node = node.Origin;
+                        }
+
+                        if (inPath)
+                            Material.color = Color.yellow;
+                        else
+                            Material.color = Color.green;
+                    }
                 }
                 break;
 

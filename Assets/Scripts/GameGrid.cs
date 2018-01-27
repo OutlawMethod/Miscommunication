@@ -34,7 +34,9 @@ public class GameGrid : MonoBehaviour
 
         Arrow.transform.position = target.transform.position + Vector3.up * 0.3f;
 
-        if (origin.X < target.X)
+        if (Vector2.Distance(new Vector2(origin.X, origin.Y), new Vector2(target.X, target.Y)) > 1.1f)
+            Arrow.transform.eulerAngles = new Vector3(0, 90, 90);
+        else if (origin.X < target.X)
             Arrow.transform.eulerAngles = new Vector3(0, 180, 0);
         else if (origin.X > target.X)
             Arrow.transform.eulerAngles = new Vector3(0, 0, 0);
