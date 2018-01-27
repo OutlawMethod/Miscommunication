@@ -164,13 +164,17 @@ public class Manager : MonoBehaviour
 
             if (Grid.Hover != null && Grid.Hover.Character != null && Grid.Hover.Character.Team == Team)
             {
-                pushPanel(Grid.Hover.Character);
-
-                if (Input.GetMouseButtonDown(0))
+                if ((Grid.HoverTeam == 0 && Grid.Last(Grid.Hover.X, Grid.HoverTeam) >= Grid.Hover.Y) ||
+                    (Grid.HoverTeam == 1 && Grid.Last(Grid.Hover.X, Grid.HoverTeam) <= Grid.Hover.Y))
                 {
-                    Current = Grid.Hover.Character;
-                    Current.Range = Current.Desc.MaxRange;
-                    updateNextOrder();
+                    pushPanel(Grid.Hover.Character);
+
+                    if (Input.GetMouseButtonDown(0))
+                    {
+                        Current = Grid.Hover.Character;
+                        Current.Range = Current.Desc.MaxRange;
+                        updateNextOrder();
+                    }
                 }
             }
         }
