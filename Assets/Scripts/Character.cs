@@ -1,13 +1,14 @@
 ﻿using UnityEngine;
 
-public class Character : MonoBehaviour
+public class Character : Actor
 {
-    public bool IsActing
+    public override bool IsActing
     {
         get { return IsMoving || IsAttacking || IsReturning || IsDying || IsTurning || IsStaying; }
     }
 
     public CharacterDesc Desc;
+    public Transform Origin;
 
     public int Range;
     public int Lives;
@@ -32,6 +33,8 @@ public class Character : MonoBehaviour
     public float TurnOrigin;
     public float TurnTarget;
     public float TurnTransition;
+
+    public bool HasFired;
 
     public int Control
     {
@@ -131,6 +134,7 @@ public class Character : MonoBehaviour
 
     public void Attack(Cell[] path)
     {
+        HasFired = false;
         Range = 0;
         Path = path;
         IsMoving = path.Length > 1;
@@ -251,18 +255,38 @@ public class Character : MonoBehaviour
         }
         else if (IsAttacking)
         {
+            if (Desc.Projectile != null && !HasFired)
+            {
+                HasFired = true;
+
+                var instance = GameObject.Instantiate(Desc.Projectile.gameObject);
+                instance.transform.position = Origin.position;
+                instance.SetActive(true);
+
+                var projectile = instance.GetComponent<Projectile>();
+                projectile.Origin = instance.transform.position;
+                projectile.Enemy = Path[Path.Length - 1].Character;
+                projectile.Target = projectile.Enemy.transform.position;
+                projectile.Damage = IsRivalsWith(projectile.Enemy) ? 4 : 2;
+
+                Manager.Process(projectile);
+            }
+
             Transition += Time.deltaTime / Desc.AttackDuration;
 
             if (Transition >= 1)
             {
-                var enemy = Path[Path.Length - 1].Character;
-
-                if (enemy != null)
+                if (Desc.Projectile == null)
                 {
-                    enemy.Lives -= 4;
+                    var enemy = Path[Path.Length - 1].Character;
 
-                    if (enemy.Lives <= 0)
-                        enemy.Die();
+                    if (enemy != null)
+                    {
+                        enemy.Lives -= IsRivalsWith(enemy) ? 4 : 2;
+
+                        if (enemy.Lives <= 0)
+                            enemy.Die();
+                    }
                 }
 
                 IsAttacking = false;

@@ -15,4 +15,5 @@ public struct CharacterDesc
     public float DeathDuration;
     public float TurnDuration;
     public string[] Rivals;
+    public Projectile Projectile;
 }

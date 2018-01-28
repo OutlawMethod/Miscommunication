@@ -50,12 +50,12 @@ public class Manager : MonoBehaviour
 
     public Character Current;
 
-    public List<Character> Processing = new List<Character>();
+    public List<Actor> Processing = new List<Actor>();
 
-    public void Process(Character character)
+    public void Process(Actor actor)
     {
-        if (!Processing.Contains(character))
-            Processing.Add(character);
+        if (!Processing.Contains(actor))
+            Processing.Add(actor);
     }
 
     private void Awake()
@@ -101,6 +101,14 @@ public class Manager : MonoBehaviour
 
         if (Processing.Count > 0)
         {
+        REMOVE_NULL:
+            for (int i = 0; i < Processing.Count; i++)
+                if (Processing[i] == null)
+                {
+                    Processing.RemoveAt(i);
+                    goto REMOVE_NULL;
+                }
+
             foreach (var unit in Processing)
                 if (unit.IsActing)
                 {
