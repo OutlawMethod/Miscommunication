@@ -11,13 +11,18 @@ public class GameScreen : MonoBehaviour
     public float Opacity = 0.5f;
     public Image Background;
     public Text Text;
+    public AudioSource Audio;
+    public float Wait = 0.5f;
 
     private void Update()
     {
         var isFading = Director.State != State;
 
         if (isFading)
+        {
+            Wait = 0.5f;
             Fade = Mathf.Clamp01(Fade + Time.deltaTime / FadeOutDuration);
+        }
         else
             Fade = Mathf.Clamp01(Fade - Time.deltaTime / FadeInDuration);
 
@@ -27,7 +32,13 @@ public class GameScreen : MonoBehaviour
         if (Text != null)
             Text.color = new Color(Text.color.r, Text.color.g, Text.color.b, Mathf.Clamp01(1 - Fade));
 
-        if (!isFading && Fade <= float.Epsilon && Input.GetMouseButtonDown(0))
+        if (!isFading && Fade <= float.Epsilon && Input.GetMouseButtonDown(0) && Wait <= float.Epsilon)
             Director.Restart();
+
+        if (Wait > 0)
+            Wait -= Time.deltaTime;
+
+        if (Audio != null)
+            Audio.volume = 1 - Fade * 0.75f;
     }
 }
