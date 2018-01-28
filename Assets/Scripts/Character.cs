@@ -218,10 +218,17 @@ public class Character : Actor
         else if (IsStaying)
         {
             Audio.volume = 0;
-            Transition += Time.deltaTime * 5;
+            Transition += Time.deltaTime / Desc.AttackDuration;
 
             if (Transition >= 1)
+            {
                 IsStaying = false;
+                IsReturning = true;
+                Transition = 0;
+                TransitionOrigin = transform.position;
+            }
+
+            transform.position = Fluid.Lerp(TransitionOrigin, TransitionOrigin + Vector3.up * 0.5f, Transition, AnimationMode.easeOut);
         }
         else
         {
