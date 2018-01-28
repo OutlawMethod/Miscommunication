@@ -73,8 +73,8 @@ public class Manager : MonoBehaviour
 
         for (int i = 0; i < Descriptions.Length; i++)
         {
-            placeCharacter(i, i + 1, 0, 0);
-            placeCharacter(i, Descriptions.Length - i, Grid.Height - 1, 1);
+            placeCharacter(i, i, 0, 0);
+            placeCharacter(i, Descriptions.Length - i - 1, Grid.Height - 1, 1);
         }
 
         Grid.ClearStatus();
