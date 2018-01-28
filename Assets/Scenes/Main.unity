@@ -1741,6 +1741,96 @@ MeshFilter:
 Transform:
   m_PrefabParentObject: {fileID: 400000, guid: ae63a4c9674639845a7f469659751c33, type: 3}
   m_PrefabInternal: {fileID: 1297869930}
+--- !u!1 &77229023
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 77229024}
+  - component: {fileID: 77229027}
+  - component: {fileID: 77229026}
+  - component: {fileID: 77229025}
+  m_Layer: 5
+  m_Name: Line1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &77229024
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 77229023}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1.0000082, y: 1.0000082, z: 1.0000082}
+  m_Children: []
+  m_Father: {fileID: 998624792}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 226.99997, y: -734}
+  m_SizeDelta: {x: 320, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &77229025
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 77229023}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -900027084, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
+  m_EffectDistance: {x: 2, y: -2}
+  m_UseGraphicAlpha: 1
+--- !u!114 &77229026
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 77229023}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_FontData:
+    m_Font: {fileID: 12800000, guid: e3ff8aedc3348b541b8434de25c4ef6c, type: 3}
+    m_FontSize: 16
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 0
+    m_MaxSize: 72
+    m_Alignment: 0
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: Rabits are bla bla bla bla blab Rabits are bla bla bla bla blab Rabits are
+    bla bla bla bla blab Rabits are bla bla bla bla blab Rabits are bla bla
+--- !u!222 &77229027
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 77229023}
 --- !u!1001 &83553027
 Prefab:
   m_ObjectHideFlags: 0
@@ -3225,6 +3315,96 @@ Prefab:
 Transform:
   m_PrefabParentObject: {fileID: 400000, guid: ae63a4c9674639845a7f469659751c33, type: 3}
   m_PrefabInternal: {fileID: 529640061}
+--- !u!1 &214963131
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 214963132}
+  - component: {fileID: 214963135}
+  - component: {fileID: 214963134}
+  - component: {fileID: 214963133}
+  m_Layer: 5
+  m_Name: Line2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &214963132
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 214963131}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1.0000082, y: 1.0000082, z: 1.0000082}
+  m_Children: []
+  m_Father: {fileID: 998624792}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 226.99997, y: -846}
+  m_SizeDelta: {x: 320, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &214963133
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 214963131}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -900027084, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
+  m_EffectDistance: {x: 2, y: -2}
+  m_UseGraphicAlpha: 1
+--- !u!114 &214963134
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 214963131}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_FontData:
+    m_Font: {fileID: 12800000, guid: e3ff8aedc3348b541b8434de25c4ef6c, type: 3}
+    m_FontSize: 16
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 0
+    m_MaxSize: 72
+    m_Alignment: 0
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: Rabits are bla bla bla bla blab Rabits are bla bla bla bla blab Rabits are
+    bla bla bla bla blab Rabits are bla bla bla bla blab Rabits are bla bla
+--- !u!222 &214963135
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 214963131}
 --- !u!1 &217869018
 GameObject:
   m_ObjectHideFlags: 0
@@ -3280,6 +3460,9 @@ MonoBehaviour:
     Rivals: []
     Projectile: {fileID: 0}
     Image: {fileID: 0}
+    Line1: 
+    Line2: 
+    Line3: 
   Origin: {fileID: 0}
   Range: 0
   Lives: 0
@@ -3833,6 +4016,96 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 35b8eb19f79552549921a146b0dabe31, type: 3}
   m_IsPrefabParent: 0
+--- !u!1 &251049760
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 251049761}
+  - component: {fileID: 251049764}
+  - component: {fileID: 251049763}
+  - component: {fileID: 251049762}
+  m_Layer: 5
+  m_Name: Line3
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &251049761
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 251049760}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1.0000082, y: 1.0000082, z: 1.0000082}
+  m_Children: []
+  m_Father: {fileID: 998624792}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 226.99997, y: -970}
+  m_SizeDelta: {x: 320, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &251049762
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 251049760}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -900027084, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
+  m_EffectDistance: {x: 2, y: -2}
+  m_UseGraphicAlpha: 1
+--- !u!114 &251049763
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 251049760}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_FontData:
+    m_Font: {fileID: 12800000, guid: e3ff8aedc3348b541b8434de25c4ef6c, type: 3}
+    m_FontSize: 16
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 0
+    m_MaxSize: 72
+    m_Alignment: 0
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: Rabits are bla bla bla bla blab Rabits are bla bla bla bla blab Rabits are
+    bla bla bla bla blab Rabits are bla bla bla bla blab Rabits are bla bla
+--- !u!222 &251049764
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 251049760}
 --- !u!1 &251226207
 GameObject:
   m_ObjectHideFlags: 0
@@ -3888,6 +4161,9 @@ MonoBehaviour:
     Rivals: []
     Projectile: {fileID: 0}
     Image: {fileID: 0}
+    Line1: 
+    Line2: 
+    Line3: 
   Origin: {fileID: 0}
   Range: 0
   Lives: 0
@@ -11676,6 +11952,9 @@ MonoBehaviour:
     Rivals: []
     Projectile: {fileID: 0}
     Image: {fileID: 0}
+    Line1: 
+    Line2: 
+    Line3: 
   Origin: {fileID: 443259680}
   Range: 0
   Lives: 0
@@ -12897,6 +13176,9 @@ MonoBehaviour:
     Rivals: []
     Projectile: {fileID: 0}
     Image: {fileID: 0}
+    Line1: 
+    Line2: 
+    Line3: 
   Origin: {fileID: 618794275}
   Range: 0
   Lives: 0
@@ -13641,6 +13923,9 @@ RectTransform:
   - {fileID: 1095386362}
   - {fileID: 2133750685}
   - {fileID: 1090737263}
+  - {fileID: 77229024}
+  - {fileID: 214963132}
+  - {fileID: 251049761}
   m_Father: {fileID: 1535430317}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -13667,6 +13952,9 @@ MonoBehaviour:
   Move: {fileID: 367302160}
   Range: {fileID: 2095367646}
   Image: {fileID: 278967156}
+  Line1: {fileID: 77229026}
+  Line2: {fileID: 214963134}
+  Line3: {fileID: 251049763}
   Fade: 0
   FadeDuration: 0.3
 --- !u!222 &998624794
@@ -14472,6 +14760,9 @@ MonoBehaviour:
     Rivals: []
     Projectile: {fileID: 0}
     Image: {fileID: 0}
+    Line1: 
+    Line2: 
+    Line3: 
   Origin: {fileID: 0}
   Range: 0
   Lives: 0
@@ -18182,6 +18473,9 @@ MonoBehaviour:
     Rivals: []
     Projectile: {fileID: 0}
     Image: {fileID: 0}
+    Line1: 
+    Line2: 
+    Line3: 
   Origin: {fileID: 0}
   Range: 0
   Lives: 0
@@ -19201,6 +19495,9 @@ MonoBehaviour:
     Rivals: []
     Projectile: {fileID: 0}
     Image: {fileID: 0}
+    Line1: 
+    Line2: 
+    Line3: 
   Origin: {fileID: 1721272084}
   Range: 0
   Lives: 0
@@ -20099,6 +20396,9 @@ MonoBehaviour:
     Rivals: []
     Projectile: {fileID: 0}
     Image: {fileID: 0}
+    Line1: 
+    Line2: 
+    Line3: 
   Origin: {fileID: 0}
   Range: 0
   Lives: 0
@@ -26001,6 +26301,9 @@ MonoBehaviour:
     Rivals: []
     Projectile: {fileID: 0}
     Image: {fileID: 0}
+    Line1: 
+    Line2: 
+    Line3: 
   Origin: {fileID: 1717564704}
   Range: 0
   Lives: 0
@@ -27380,6 +27683,9 @@ MonoBehaviour:
     - Rabbits
     Projectile: {fileID: 0}
     Image: {fileID: 21300000, guid: 865f5834fe62b5442bf55fdcedb1d264, type: 3}
+    Line1: Woof
+    Line2: Can't trust those cats!
+    Line3: No rabbits
   - Name: Fox
     MaxRange: 5
     MaxLives: 7
@@ -27394,6 +27700,9 @@ MonoBehaviour:
     - Racoon
     Projectile: {fileID: 0}
     Image: {fileID: 21300000, guid: d822c3fde20ef7245abf990af31458cd, type: 3}
+    Line1: Fast and cunning
+    Line2: Why would you trust a rabbit?
+    Line3: Racoons? Ew
   - Name: Cat
     MaxRange: 3
     MaxLives: 9
@@ -27408,6 +27717,9 @@ MonoBehaviour:
     - Racoon
     Projectile: {fileID: 730617027}
     Image: {fileID: 21300000, guid: e2c7a8958f91b2247bf922af07b9f239, type: 3}
+    Line1: 9 lives and a tank
+    Line2: Those filthy dogs...
+    Line3: Racoons are even worse
   - Name: Rabbits
     MaxRange: 5
     MaxLives: 5
@@ -27422,6 +27734,9 @@ MonoBehaviour:
     - Dog
     Projectile: {fileID: 0}
     Image: {fileID: 21300000, guid: 458c06c02868cbb41ba6ef68e6620132, type: 3}
+    Line1: Three heads better than one
+    Line2: Runs away from the fox
+    Line3: Runs away from the dogs
   - Name: Racoon
     MaxRange: 3
     MaxLives: 7
@@ -27436,6 +27751,9 @@ MonoBehaviour:
     - Cat
     Projectile: {fileID: 722100667}
     Image: {fileID: 21300000, guid: 09c9ca7ae26760c468e99274d7892cbb, type: 3}
+    Line1: Trash panda
+    Line2: Hates those posh foxes
+    Line3: Hates those posh cats
   Prefabs:
   - Teams:
     - {fileID: 1069989966}
@@ -29865,6 +30183,9 @@ MonoBehaviour:
     Rivals: []
     Projectile: {fileID: 0}
     Image: {fileID: 0}
+    Line1: 
+    Line2: 
+    Line3: 
   Origin: {fileID: 0}
   Range: 0
   Lives: 0

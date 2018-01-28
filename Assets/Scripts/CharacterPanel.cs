@@ -10,6 +10,9 @@ public class CharacterPanel : MonoBehaviour
     public Text Move;
     public Text Range;
     public Image Image;
+    public Text Line1;
+    public Text Line2;
+    public Text Line3;
     public float Fade;
     public float FadeDuration = 0.3f;
 
@@ -36,6 +39,9 @@ public class CharacterPanel : MonoBehaviour
         Range.text = Character.Desc.AttackRange.ToString();
         Move.text = Character.Desc.MaxRange.ToString();
         Image.sprite = Character.Desc.Image;
+        Line1.text = Character.Desc.Line1;
+        Line2.text = Character.Desc.Line2;
+        Line3.text = Character.Desc.Line3;
         UpdateColors();
     }
 

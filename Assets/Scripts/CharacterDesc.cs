@@ -16,4 +16,7 @@ public struct CharacterDesc
     public string[] Rivals;
     public Projectile Projectile;
     public Sprite Image;
+    public string Line1;
+    public string Line2;
+    public string Line3;
 }
