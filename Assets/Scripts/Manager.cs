@@ -46,6 +46,7 @@ public class Manager : MonoBehaviour
     public List<CharacterPanel> Panels = new List<CharacterPanel>();
 
     public int Team = 0;
+    public int StartingTeam;
 
     public Character Current;
 
@@ -77,6 +78,13 @@ public class Manager : MonoBehaviour
         }
 
         Grid.ClearStatus();
+
+        Team = StartingTeam;
+
+        if (StartingTeam == 0)
+            StartingTeam = 1;
+        else
+            StartingTeam = 0;
     }
 
     public void Stop()
@@ -175,6 +183,9 @@ public class Manager : MonoBehaviour
 
     private void updateInput()
     {
+        if (Input.GetMouseButton(1) || Input.GetMouseButton(2))
+            return;
+
         if (Current == null)
         {
             Grid.HoverTeam = Team;

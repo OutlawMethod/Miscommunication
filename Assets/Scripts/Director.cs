@@ -46,9 +46,15 @@ public class Director : MonoBehaviour
                 }
 
                 if (team0 > 0 && team1 == 0)
+                {
+                    Manager.Team = 0;
                     State = DirectorState.redWins;
+                }
                 else if (team1 > 0 && team0 == 0)
+                {
+                    Manager.Team = 1;
                     State = DirectorState.blueWins;
+                }
                 else if (!hasAnyControl)
                     State = DirectorState.draw;
                 else if (team0 == 0 && team1 == 0)
