@@ -304,7 +304,7 @@ public class Character : Actor
 
             var targetPosition = target.transform.position;
 
-            if (Desc.InvertAttack)
+            if (Desc.Projectile != null)
                 targetPosition = TransitionOrigin - (target.transform.position - TransitionOrigin);
 
             transform.position = Fluid.Lerp(TransitionOrigin, targetPosition, Transition, AnimationMode.easeIn);
