@@ -22253,6 +22253,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Manager: {fileID: 1924536056}
+  Director: {fileID: 1924536058}
   Skip: {fileID: 974309335}
   Red: {fileID: 21300000, guid: 0c05499e9e41a6349b3d83e8e1979479, type: 3}
   Blue: {fileID: 21300000, guid: 093eb00459bb3b244a0033087c4b9522, type: 3}

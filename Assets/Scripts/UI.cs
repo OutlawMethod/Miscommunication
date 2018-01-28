@@ -5,6 +5,7 @@ using System.Collections;
 public class UI : MonoBehaviour
 {
     public Manager Manager;
+    public Director Director;
 
     public Image Skip;
     public Sprite Red;
@@ -17,7 +18,9 @@ public class UI : MonoBehaviour
 
     private void Update()
     {
-        if (Skip.gameObject.activeSelf != Manager.CanSkip) Skip.gameObject.SetActive(Manager.CanSkip);
+        var canSkip = Manager.CanSkip && Manager.isActiveAndEnabled && Director.State == DirectorState.game;
+
+        if (Skip.gameObject.activeSelf != canSkip) Skip.gameObject.SetActive(canSkip);
         if (Manager.Team == 0) Skip.sprite = Red;
         if (Manager.Team == 1) Skip.sprite = Blue;
     }
