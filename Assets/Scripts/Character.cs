@@ -36,6 +36,14 @@ public class Character : Actor
 
     public bool HasFired;
 
+    public AudioSource Audio;
+
+    private void Awake()
+    {
+        Audio = GetComponent<AudioSource>();
+        Audio.volume = 0;
+    }
+
     public int Control
     {
         get
@@ -157,6 +165,8 @@ public class Character : Actor
         TransitionOrigin = transform.position;
         prepareToMoveTo(path[0]);
         Manager.Process(this);
+        Audio.Play();
+        Audio.volume = 1;
     }
 
     private void prepareToMoveTo(Cell next)
@@ -171,8 +181,17 @@ public class Character : Actor
             Turn(180);
     }
 
+    float targetVolume;
+
+    private void LateUpdate()
+    {
+        Audio.volume = targetVolume;
+    }
+
     private void Update()
     {
+        targetVolume = 0f;
+
         if (IsDying)
         {
             Transition += Time.deltaTime / Desc.DeathDuration;
@@ -192,131 +211,137 @@ public class Character : Actor
             if (Transition >= 1)
                 IsStaying = false;
         }
-        else if (IsTurning)
+        else
         {
-            TurnTransition += Time.deltaTime / Desc.TurnDuration;
-
-            if (TurnTransition >= 1)
+            if (IsTurning)
             {
-                TurnTransition = 1;
-                IsTurning = false;
-            }
+                targetVolume = Mathf.Clamp01(Audio.volume - Time.deltaTime * 3);
 
-            transform.eulerAngles = new Vector3(transform.eulerAngles.x, Fluid.LerpAngle(TurnOrigin, TurnTarget, TurnTransition, AnimationMode.easeInOut), transform.eulerAngles.z);
-        }
-        else if (IsMoving)
-        {
-            var segment = Cell.SegmentLength(Path, PathIndex);
+                TurnTransition += Time.deltaTime / Desc.TurnDuration;
 
-            if (IsAttacking && PathIndex + segment >= Path.Length)
-                segment--;
-
-            Transition += Time.deltaTime / (segment * Desc.ShiftDuration);
-
-            while (Transition >= 1 && PathIndex + segment - 1 < Path.Length)
-            {
-                if (Cell != null)
-                    Cell.Character = null;
-
-                Cell = Path[PathIndex + segment - 1];
-                Cell.Character = this;
-
-                Transition -= 1;
-                TransitionOrigin = transform.position;
-                PathIndex += segment;
-
-                if (PathIndex < Path.Length)
-                    prepareToMoveTo(Path[PathIndex]);
-
-                segment = 1;
-            }
-
-            if (PathIndex + segment - 1 < Path.Length)
-                transform.position = Fluid.Lerp(TransitionOrigin, Path[PathIndex + segment - 1].transform.position, Transition, AnimationMode.easeInOut);
-
-            if (IsAttacking)
-            {
-                if (PathIndex + 1 >= Path.Length)
+                if (TurnTransition >= 1)
                 {
+                    TurnTransition = 1;
+                    IsTurning = false;
+                }
+
+                transform.eulerAngles = new Vector3(transform.eulerAngles.x, Fluid.LerpAngle(TurnOrigin, TurnTarget, TurnTransition, AnimationMode.easeInOut), transform.eulerAngles.z);
+            }
+            else if (IsMoving)
+            {
+                targetVolume = 1;
+                var segment = Cell.SegmentLength(Path, PathIndex);
+
+                if (IsAttacking && PathIndex + segment >= Path.Length)
+                    segment--;
+
+                Transition += Time.deltaTime / (segment * Desc.ShiftDuration);
+
+                while (Transition >= 1 && PathIndex + segment - 1 < Path.Length)
+                {
+                    if (Cell != null)
+                        Cell.Character = null;
+
+                    Cell = Path[PathIndex + segment - 1];
+                    Cell.Character = this;
+
+                    Transition -= 1;
                     TransitionOrigin = transform.position;
-                    Transition = 0;
-                    IsMoving = false;
-                    prepareToMoveTo(Path[Path.Length - 1]);
+                    PathIndex += segment;
+
+                    if (PathIndex < Path.Length)
+                        prepareToMoveTo(Path[PathIndex]);
+
+                    segment = 1;
                 }
-            }
-            else
-            {
-                if (PathIndex >= Path.Length)
+
+                if (PathIndex + segment - 1 < Path.Length)
+                    transform.position = Fluid.Lerp(TransitionOrigin, Path[PathIndex + segment - 1].transform.position, Transition, AnimationMode.easeInOut);
+
+                if (IsAttacking)
                 {
-                    Transition = 0;
-                    IsMoving = false;
-                }
-            }
-        }
-        else if (IsAttacking)
-        {
-            if (Desc.Projectile != null && !HasFired)
-            {
-                HasFired = true;
-
-                var instance = GameObject.Instantiate(Desc.Projectile.gameObject);
-                instance.transform.position = Origin.position;
-                instance.SetActive(true);
-
-                var projectile = instance.GetComponent<Projectile>();
-                projectile.Origin = instance.transform.position;
-                projectile.Enemy = Path[Path.Length - 1].Character;
-                projectile.Target = projectile.Enemy.transform.position;
-                projectile.Damage = IsRivalsWith(projectile.Enemy) ? 4 : 2;
-
-                Manager.Process(projectile);
-            }
-
-            Transition += Time.deltaTime / Desc.AttackDuration;
-
-            if (Transition >= 1)
-            {
-                if (Desc.Projectile == null)
-                {
-                    var enemy = Path[Path.Length - 1].Character;
-
-                    if (enemy != null)
+                    if (PathIndex + 1 >= Path.Length)
                     {
-                        enemy.Lives -= IsRivalsWith(enemy) ? 4 : 2;
-
-                        if (enemy.Lives <= 0)
-                            enemy.Die();
+                        TransitionOrigin = transform.position;
+                        Transition = 0;
+                        IsMoving = false;
+                        prepareToMoveTo(Path[Path.Length - 1]);
                     }
                 }
-
-                IsAttacking = false;
-                IsReturning = true;
-                Transition = 0;
-                TransitionOrigin = transform.position;
+                else
+                {
+                    if (PathIndex >= Path.Length)
+                    {
+                        Transition = 0;
+                        IsMoving = false;
+                    }
+                }
             }
+            else if (IsAttacking)
+            {
+                if (Desc.Projectile != null && !HasFired)
+                {
+                    HasFired = true;
 
-            var target = Path[Path.Length - 1];
+                    var instance = GameObject.Instantiate(Desc.Projectile.gameObject);
+                    instance.transform.position = Origin.position;
+                    instance.SetActive(true);
 
-            if (target.X > Cell.X + 1) target = Manager.Grid.Cells[Cell.X + 1, Cell.Y];
-            if (target.X < Cell.X - 1) target = Manager.Grid.Cells[Cell.X - 1, Cell.Y];
-            if (target.Y > Cell.Y + 1) target = Manager.Grid.Cells[Cell.X, Cell.Y + 1];
-            if (target.Y < Cell.Y - 1) target = Manager.Grid.Cells[Cell.X, Cell.Y - 1];
+                    var projectile = instance.GetComponent<Projectile>();
+                    projectile.Origin = instance.transform.position;
+                    projectile.Enemy = Path[Path.Length - 1].Character;
+                    projectile.Target = projectile.Enemy.transform.position;
+                    projectile.Damage = IsRivalsWith(projectile.Enemy) ? 4 : 2;
 
-            var targetPosition = target.transform.position;
+                    Manager.Process(projectile);
+                }
 
-            if (Desc.Projectile != null)
-                targetPosition = TransitionOrigin - (target.transform.position - TransitionOrigin);
+                Transition += Time.deltaTime / Desc.AttackDuration;
 
-            transform.position = Fluid.Lerp(TransitionOrigin, targetPosition, Transition, AnimationMode.easeIn);
-        }
-        else if (IsReturning)
-        {
-            Transition += Time.deltaTime / Desc.ReturnDuration;
+                if (Transition >= 1)
+                {
+                    if (Desc.Projectile == null)
+                    {
+                        var enemy = Path[Path.Length - 1].Character;
 
-            if (Transition >= 1)
-                IsReturning = false;
+                        if (enemy != null)
+                        {
+                            enemy.Lives -= IsRivalsWith(enemy) ? 4 : 2;
 
-            transform.position = Fluid.Lerp(TransitionOrigin, Cell.transform.position, Transition, AnimationMode.easeOut);
+                            if (enemy.Lives <= 0)
+                                enemy.Die();
+                        }
+                    }
+
+                    IsAttacking = false;
+                    IsReturning = true;
+                    Transition = 0;
+                    TransitionOrigin = transform.position;
+                }
+
+                var target = Path[Path.Length - 1];
+
+                if (target.X > Cell.X + 1) target = Manager.Grid.Cells[Cell.X + 1, Cell.Y];
+                if (target.X < Cell.X - 1) target = Manager.Grid.Cells[Cell.X - 1, Cell.Y];
+                if (target.Y > Cell.Y + 1) target = Manager.Grid.Cells[Cell.X, Cell.Y + 1];
+                if (target.Y < Cell.Y - 1) target = Manager.Grid.Cells[Cell.X, Cell.Y - 1];
+
+                var targetPosition = target.transform.position;
+
+                if (Desc.Projectile != null)
+                    targetPosition = TransitionOrigin - (target.transform.position - TransitionOrigin);
+
+                transform.position = Fluid.Lerp(TransitionOrigin, targetPosition, Transition, AnimationMode.easeIn);
+            }
+            else if (IsReturning)
+            {
+                Transition += Time.deltaTime / Desc.ReturnDuration;
+
+                if (Transition >= 1)
+                    IsReturning = false;
+
+                transform.position = Fluid.Lerp(TransitionOrigin, Cell.transform.position, Transition, AnimationMode.easeOut);
+            }
         }
     }
 }
