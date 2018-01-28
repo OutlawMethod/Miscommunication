@@ -39,6 +39,6 @@ public class GameScreen : MonoBehaviour
             Wait -= Time.deltaTime;
 
         if (Audio != null)
-            Audio.volume = 1 - Fade * 0.75f;
+            Audio.volume = Mathf.Lerp(Audio.volume, 1 - Fade * 0.9f, Time.deltaTime * 2);
     }
 }

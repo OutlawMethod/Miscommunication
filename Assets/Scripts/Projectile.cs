@@ -26,6 +26,7 @@ public class Projectile : Actor
 
             if (Transition >= 1 - float.Epsilon)
             {
+                Enemy.Play(Enemy.HitSound);
                 Enemy.Lives -= Damage;
 
                 if (Enemy.Lives <= 0)

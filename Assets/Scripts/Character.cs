@@ -37,6 +37,8 @@ public class Character : Actor
     public bool HasFired;
 
     public AudioSource Audio;
+    public AudioClip AttackSound;
+    public AudioClip HitSound;
 
     private void Awake()
     {
@@ -183,6 +185,11 @@ public class Character : Actor
 
     float targetVolume;
 
+    public void Play(AudioClip clip)
+    {
+        AudioSource.PlayClipAtPoint(clip, transform.position);
+    }
+
     private void LateUpdate()
     {
         Audio.volume = targetVolume;
@@ -282,6 +289,7 @@ public class Character : Actor
                 if (Desc.Projectile != null && !HasFired)
                 {
                     HasFired = true;
+                    Play(AttackSound);
 
                     var instance = GameObject.Instantiate(Desc.Projectile.gameObject);
                     instance.transform.position = Origin.position;
@@ -295,6 +303,11 @@ public class Character : Actor
 
                     Manager.Process(projectile);
                 }
+                else if (!HasFired)
+                {
+                    HasFired = true;
+                    Play(AttackSound);
+                }
 
                 Transition += Time.deltaTime / Desc.AttackDuration;
 
@@ -306,6 +319,7 @@ public class Character : Actor
 
                         if (enemy != null)
                         {
+                            enemy.Play(enemy.HitSound);
                             enemy.Lives -= IsRivalsWith(enemy) ? 4 : 2;
 
                             if (enemy.Lives <= 0)
