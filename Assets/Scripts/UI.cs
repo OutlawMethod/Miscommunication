@@ -6,7 +6,9 @@ public class UI : MonoBehaviour
 {
     public Manager Manager;
 
-    public GameObject Skip;
+    public Image Skip;
+    public Sprite Red;
+    public Sprite Blue;
 
     private void Awake()
     {
@@ -15,6 +17,8 @@ public class UI : MonoBehaviour
 
     private void Update()
     {
-        if (Skip.activeSelf != Manager.CanSkip) Skip.SetActive(Manager.CanSkip);
+        if (Skip.gameObject.activeSelf != Manager.CanSkip) Skip.gameObject.SetActive(Manager.CanSkip);
+        if (Manager.Team == 0) Skip.sprite = Red;
+        if (Manager.Team == 1) Skip.sprite = Blue;
     }
 }
