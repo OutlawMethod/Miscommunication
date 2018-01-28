@@ -167,6 +167,7 @@ public class Character : Actor
         TransitionOrigin = transform.position;
         prepareToMoveTo(path[0]);
         Manager.Process(this);
+        Audio.Stop();
         Audio.Play();
         Audio.volume = 1;
     }
