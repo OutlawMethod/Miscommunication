@@ -24,8 +24,6 @@ public class Director : MonoBehaviour
 
     private void Update()
     {
-        var previousState = State;
-
         if (State == DirectorState.game)
         {
             if (Manager.Processing.Count == 0)
