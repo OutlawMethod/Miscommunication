@@ -170,6 +170,7 @@ public class Character : Actor
         if (Audio.isPlaying)
             Audio.Stop();
         Audio.Play();
+        Audio.time = 0;
         Audio.volume = 1;
     }
 
