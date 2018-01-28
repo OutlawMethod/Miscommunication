@@ -56,7 +56,7 @@ public class Character : Actor
                         return 0;
                     else
                     {
-                        value -= current.IsRivalsWith(cell.Character) ? 40 : 20;
+                        value -= current.IsRivalsWith(cell.Character) ? 50 : 30;
                         current = cell.Character;
                     }
                 }
