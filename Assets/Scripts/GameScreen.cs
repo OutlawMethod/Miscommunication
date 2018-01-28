@@ -13,6 +13,7 @@ public class GameScreen : MonoBehaviour
     public Text Text;
     public AudioSource Audio;
     public float Wait = 0.5f;
+    public bool HasStarted;
 
     private void Update()
     {
@@ -20,11 +21,22 @@ public class GameScreen : MonoBehaviour
 
         if (isFading)
         {
+            HasStarted = false;
             Wait = 0.5f;
             Fade = Mathf.Clamp01(Fade + Time.deltaTime / FadeOutDuration);
+
+            if (Director.State != DirectorState.game)
+                Audio.volume = 0;
         }
         else
+        {
+            if (!HasStarted)
+                Audio.Play();
+
+            HasStarted = true;
+            Audio.volume = 1;
             Fade = Mathf.Clamp01(Fade - Time.deltaTime / FadeInDuration);
+        }
 
         if (Background != null)
             Background.color = new Color(Background.color.r, Background.color.g, Background.color.b, Mathf.Clamp01(Opacity - Fade * Opacity));
