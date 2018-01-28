@@ -154,6 +154,15 @@ public class Character : Actor
         TransitionOrigin = transform.position;
         prepareToMoveTo(path[0]);
         Manager.Process(this);
+
+        if (Path.Length > 1)
+        {
+            var clip = Audio.clip;
+            Destroy(Audio);
+            Audio = gameObject.AddComponent<AudioSource>();
+            Audio.clip = clip;
+            Audio.Play();
+        }
     }
 
     public void Move(Cell[] path)
@@ -167,11 +176,11 @@ public class Character : Actor
         TransitionOrigin = transform.position;
         prepareToMoveTo(path[0]);
         Manager.Process(this);
-        if (Audio.isPlaying)
-            Audio.Stop();
+        var clip = Audio.clip;
+        Destroy(Audio);
+        Audio = gameObject.AddComponent<AudioSource>();
+        Audio.clip = clip;
         Audio.Play();
-        Audio.time = 0;
-        Audio.volume = 1;
     }
 
     private void prepareToMoveTo(Cell next)
@@ -186,24 +195,16 @@ public class Character : Actor
             Turn(180);
     }
 
-    float targetVolume;
-
     public void Play(AudioClip clip)
     {
         AudioSource.PlayClipAtPoint(clip, transform.position);
     }
 
-    private void LateUpdate()
-    {
-        Audio.volume = targetVolume;
-    }
-
     private void Update()
     {
-        targetVolume = 0f;
-
         if (IsDying)
         {
+            Audio.volume = 0;
             Transition += Time.deltaTime / Desc.DeathDuration;
 
             if (Transition >= 1)
@@ -216,16 +217,24 @@ public class Character : Actor
         }
         else if (IsStaying)
         {
-            Transition += Time.deltaTime * 5;
+            Audio.volume = 0;
+            Transition += Time.deltaTime / Desc.AttackDuration;
 
             if (Transition >= 1)
+            {
                 IsStaying = false;
+                IsReturning = true;
+                Transition = 0;
+                TransitionOrigin = transform.position;
+            }
+
+            transform.position = Fluid.Lerp(TransitionOrigin, TransitionOrigin + Vector3.up * 0.5f, Transition, AnimationMode.easeOut);
         }
         else
         {
             if (IsTurning)
             {
-                targetVolume = Mathf.Clamp01(Audio.volume - Time.deltaTime * 3);
+                Audio.volume = Mathf.Clamp01(Audio.volume - Time.deltaTime * 3);
 
                 TurnTransition += Time.deltaTime / Desc.TurnDuration;
 
@@ -239,7 +248,7 @@ public class Character : Actor
             }
             else if (IsMoving)
             {
-                targetVolume = 1;
+                Audio.volume = 1;
                 var segment = Cell.SegmentLength(Path, PathIndex);
 
                 if (IsAttacking && PathIndex + segment >= Path.Length)
@@ -289,6 +298,8 @@ public class Character : Actor
             }
             else if (IsAttacking)
             {
+                Audio.volume = 0;
+
                 if (Desc.Projectile != null && !HasFired)
                 {
                     HasFired = true;
@@ -352,6 +363,7 @@ public class Character : Actor
             }
             else if (IsReturning)
             {
+                Audio.volume = 0;
                 Transition += Time.deltaTime / Desc.ReturnDuration;
 
                 if (Transition >= 1)
@@ -359,6 +371,8 @@ public class Character : Actor
 
                 transform.position = Fluid.Lerp(TransitionOrigin, Cell.transform.position, Transition, AnimationMode.easeOut);
             }
+            else
+                Audio.volume = 0;
         }
     }
 }

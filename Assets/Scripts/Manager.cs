@@ -194,6 +194,8 @@ public class Manager : MonoBehaviour
         if (Input.GetMouseButton(1) || Input.GetMouseButton(2))
             return;
 
+        Grid.IsTemp = false;
+
         if (Current == null)
         {
             Grid.HoverTeam = Team;
@@ -204,6 +206,8 @@ public class Manager : MonoBehaviour
                     (Grid.HoverTeam == 1 && Grid.Last(Grid.Hover.X, Grid.HoverTeam) <= Grid.Hover.Y))
                 {
                     pushPanel(Grid.Hover.Character);
+                    Grid.FindPaths(Grid.Hover, Grid.Hover.Character.Desc.MaxRange);
+                    Grid.IsTemp = true;
 
                     if (Input.GetMouseButtonDown(0))
                     {
@@ -212,7 +216,11 @@ public class Manager : MonoBehaviour
                         updateNextOrder();
                     }
                 }
+                else
+                    Grid.ClearStatus();
             }
+            else
+                Grid.ClearStatus();
         }
         else
         {
