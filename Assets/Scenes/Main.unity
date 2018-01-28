@@ -1774,7 +1774,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 226.99997, y: -734}
+  m_AnchoredPosition: {x: 226.99997, y: -724}
   m_SizeDelta: {x: 320, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &77229025
@@ -1823,8 +1823,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Rabits are bla bla bla bla blab Rabits are bla bla bla bla blab Rabits are
-    bla bla bla bla blab Rabits are bla bla bla bla blab Rabits are bla bla
+  m_Text: I love my car live ooiroieoqwe
 --- !u!222 &77229027
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3348,7 +3347,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 226.99997, y: -846}
+  m_AnchoredPosition: {x: 226.99997, y: -794}
   m_SizeDelta: {x: 320, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &214963133
@@ -3397,8 +3396,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Rabits are bla bla bla bla blab Rabits are bla bla bla bla blab Rabits are
-    bla bla bla bla blab Rabits are bla bla bla bla blab Rabits are bla bla
+  m_Text: qkejqwklejklqwjelkwqjlkejkqlwjelkqwjelkjqwklejqklwjeklqjelkwq
 --- !u!222 &214963135
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4049,7 +4047,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 226.99997, y: -970}
+  m_AnchoredPosition: {x: 226.99997, y: -864}
   m_SizeDelta: {x: 320, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &251049762
@@ -4098,8 +4096,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Rabits are bla bla bla bla blab Rabits are bla bla bla bla blab Rabits are
-    bla bla bla bla blab Rabits are bla bla bla bla blab Rabits are bla bla
+  m_Text: qkjweklqjekljqwklejlkqjeljqjelkqjwlkejqlkejlkqwjelkqwjlkw
 --- !u!222 &251049764
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -27683,9 +27680,9 @@ MonoBehaviour:
     - Rabbits
     Projectile: {fileID: 0}
     Image: {fileID: 21300000, guid: 865f5834fe62b5442bf55fdcedb1d264, type: 3}
-    Line1: Woof
-    Line2: Can't trust those cats!
-    Line3: No rabbits
+    Line1: Woof. Woof woof? Woof woof woof! Woof.
+    Line2: Dogs and cats living together? Mass histeria!
+    Line3: Rabbits have always let me down.
   - Name: Fox
     MaxRange: 5
     MaxLives: 7
@@ -27700,9 +27697,9 @@ MonoBehaviour:
     - Racoon
     Projectile: {fileID: 0}
     Image: {fileID: 21300000, guid: d822c3fde20ef7245abf990af31458cd, type: 3}
-    Line1: Fast and cunning
-    Line2: Why would you trust a rabbit?
-    Line3: Racoons? Ew
+    Line1: I love my car!
+    Line2: Rabbits? There are three too many.
+    Line3: Racoons? Ew, so disgusting.
   - Name: Cat
     MaxRange: 3
     MaxLives: 9
@@ -27717,9 +27714,10 @@ MonoBehaviour:
     - Racoon
     Projectile: {fileID: 730617027}
     Image: {fileID: 21300000, guid: e2c7a8958f91b2247bf922af07b9f239, type: 3}
-    Line1: 9 lives and a tank
-    Line2: Those filthy dogs...
-    Line3: Racoons are even worse
+    Line1: '9 lives and a tank. '
+    Line2: Dogs are dumb, always making a mess. So uneducated.
+    Line3: That monstrous racoon has no place here. What civilized person uses trash
+      cans as vehicles?
   - Name: Rabbits
     MaxRange: 5
     MaxLives: 5
@@ -27735,8 +27733,8 @@ MonoBehaviour:
     Projectile: {fileID: 0}
     Image: {fileID: 21300000, guid: 458c06c02868cbb41ba6ef68e6620132, type: 3}
     Line1: Three heads better than one
-    Line2: Runs away from the fox
-    Line3: Runs away from the dogs
+    Line2: Who would want to be in a team with a killer fox? Surely not us.
+    Line3: Dogs are loud and obnoxious, keep away!
   - Name: Racoon
     MaxRange: 3
     MaxLives: 7
@@ -27751,9 +27749,9 @@ MonoBehaviour:
     - Cat
     Projectile: {fileID: 722100667}
     Image: {fileID: 21300000, guid: 09c9ca7ae26760c468e99274d7892cbb, type: 3}
-    Line1: Trash panda
-    Line2: Hates those posh foxes
-    Line3: Hates those posh cats
+    Line1: Just a regular old trash panda.
+    Line2: Fox thinks he's so smart, but true wisdom lies in the trash.
+    Line3: Cat starts in the center? I didn't vote for this.
   Prefabs:
   - Teams:
     - {fileID: 1069989966}
