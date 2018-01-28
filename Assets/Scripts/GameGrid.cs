@@ -21,6 +21,8 @@ public class GameGrid : MonoBehaviour
     public GameObject ArrowPrefab;
     public GameObject Arrow;
 
+    public bool IsTemp;
+
     public bool IsPointing;
 
     public int Last(int x, int team)

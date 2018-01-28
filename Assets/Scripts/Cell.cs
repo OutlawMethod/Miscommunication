@@ -24,6 +24,9 @@ public class Cell : MonoBehaviour
     public int Value;
     public bool Visited;
 
+    public float Blink;
+    public int BlinkDirection;
+
     public List<Cell> Temp = new List<Cell>();
 
     private void Awake()
@@ -284,6 +287,30 @@ public class Cell : MonoBehaviour
                     Material.color = Color.red;
                 break;
         }
+
+        if (BlinkDirection >= 0)
+        {
+            Blink += Time.deltaTime * 3;
+
+            if (Blink >= 1)
+            {
+                Blink = 1;
+                BlinkDirection = -1;
+            }
+        }
+        else
+        {
+            Blink -= Time.deltaTime * 3;
+
+            if (Blink <= 0)
+            {
+                Blink = 0;
+                BlinkDirection = 1;
+            }
+        }
+
+        if (Grid.IsTemp)
+            Material.color = Color.Lerp(Material.color, Color.Lerp(Material.color, Color.white, 0.75f), Blink);
     }
 
     private void OnMouseOver()
