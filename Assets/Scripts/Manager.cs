@@ -189,6 +189,8 @@ public class Manager : MonoBehaviour
         }
     }
 
+    private Cell _generatedOrigin;
+
     private void updateInput()
     {
         if (Input.GetMouseButton(1) || Input.GetMouseButton(2))
@@ -206,7 +208,13 @@ public class Manager : MonoBehaviour
                     (Grid.HoverTeam == 1 && Grid.Last(Grid.Hover.X, Grid.HoverTeam) <= Grid.Hover.Y))
                 {
                     pushPanel(Grid.Hover.Character);
-                    Grid.FindPaths(Grid.Hover, Grid.Hover.Character.Desc.MaxRange);
+
+                    if (Grid.Hover != _generatedOrigin)
+                    {
+                        _generatedOrigin = Grid.Hover;
+                        Grid.FindPaths(Grid.Hover, Grid.Hover.Character.Desc.MaxRange);
+                    }
+
                     Grid.IsTemp = true;
 
                     if (Input.GetMouseButtonDown(0))
@@ -217,10 +225,16 @@ public class Manager : MonoBehaviour
                     }
                 }
                 else
+                {
+                    _generatedOrigin = null;
                     Grid.ClearStatus();
+                }
             }
             else
+            {
+                _generatedOrigin = null;
                 Grid.ClearStatus();
+            }
         }
         else
         {
